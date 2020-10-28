@@ -4,6 +4,7 @@ using DB;
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -17,14 +18,14 @@ namespace Controller
             connectDB = new ConnectDB(string.Format("D:\\Documents\\unity projects\\Celeste\\Assets\\Coordinate.sqlite3"));
         }
 
-        public void SaveCoordinate(string name)
+        public async Task<string> SaveCoordinate(string name)
         {
             string add = "INSERT INTO coordinate ('CoordinateX', 'CoordinateY', 'Name', 'Id') VALUES (@CoordinateX, @CoordinateY, @Name, @Id)";
 
             using (var commandSQl = new SqliteCommand(add, connectDB.connection))
             {
 
-                ReadCoordinate();
+                await Task.Run(() => ReadCoordinate());
                 connectDB.OpenConnection();
 
                 commandSQl.Parameters.AddWithValue("@CoordinateX", player.position.x);
@@ -37,18 +38,19 @@ namespace Controller
 
                 connectDB.CloseConnection();
             }
+            return "Add";
         }
 
-        public void UpdateCoordinate(string name)
+        public async Task<string> UpdateCoordinate(string name)
         {
-            ReadCoordinate();
+            await Task.Run(() => ReadCoordinate());
 
-            string add = $"UPDATE coordinate SET CoordinateX = '{player.position.x}'," +
+            string update = $"UPDATE coordinate SET CoordinateX = '{player.position.x}'," +
                         $" CoordinateY = '{player.position.y}'," +
                         $" Name = '{name}' WHERE Id = 1;";
 
 
-            using (var commandSQl = new SqliteCommand(add, connectDB.connection))
+            using (var commandSQl = new SqliteCommand(update, connectDB.connection))
             {
 
                 connectDB.OpenConnection();
@@ -63,6 +65,7 @@ namespace Controller
 
                 connectDB.CloseConnection();
             }
+            return "Updated";
         }
 
         public Vector2 ReadCoordinate()
@@ -88,8 +91,8 @@ namespace Controller
                             Id = (long)result["Id"]
 
                         };
-                        return new Vector2((float)coordinateTable.CoordinateX, (float)coordinateTable.CoordinateY);
                     }
+                    return new Vector2((float)coordinateTable.CoordinateX, (float)coordinateTable.CoordinateY);
                 }
 
                 connectDB.CloseConnection();
@@ -97,11 +100,11 @@ namespace Controller
             return new Vector2(0, 0);
         }
 
-        public void DeleteCoordinate()
+        public async Task<string> DeleteCoordinate()
         {
             string del = "DELETE FROM coordinate WHERE Id = 1";
 
-            ReadCoordinate();
+            await Task.Run(() => ReadCoordinate());
 
             connectDB.OpenConnection();
 
@@ -110,6 +113,7 @@ namespace Controller
             var result = commandSQl.ExecuteNonQuery();
 
             connectDB.CloseConnection();
+            return "Deleted";
         }
     }
 }
