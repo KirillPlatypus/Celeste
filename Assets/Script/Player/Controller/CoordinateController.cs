@@ -41,9 +41,9 @@ namespace Controller
             return "Add";
         }
 
-        public async Task<string> UpdateCoordinate(string name)
+        public void UpdateCoordinate(string name)
         {
-            await Task.Run(() => ReadCoordinate());
+             ReadCoordinate();
 
             string update = $"UPDATE coordinate SET CoordinateX = '{player.position.x}'," +
                         $" CoordinateY = '{player.position.y}'," +
@@ -65,7 +65,6 @@ namespace Controller
 
                 connectDB.CloseConnection();
             }
-            return "Updated";
         }
 
         public Vector2 ReadCoordinate()

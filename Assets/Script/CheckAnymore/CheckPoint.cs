@@ -8,16 +8,22 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private CoordinateController saveCoordinate;
 
-   
+    private delegate void updateCoordinate(string name);
+    private event updateCoordinate updated;
+
+    private void Awake()
+    {
+        updated += saveCoordinate.UpdateCoordinate;
+
+    }
     public void Update()
     {
 
         if (OnCheckpoint && gameObject.name != saveCoordinate.coordinateTable.Name)
         {
-            //saveCoordinate.DeleteCoordinate();
-            //saveCoordinate.SaveCoordinate(gameObject.name);
-            saveCoordinate.UpdateCoordinate(gameObject.name);
+            updated(gameObject.name);
         }
+
         OnCheckpoint = Physics2D.OverlapBox(transform.position, transform.localScale, 1f, mask);
 
     }
