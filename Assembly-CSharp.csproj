@@ -84,6 +84,7 @@
     <Compile Include="Assets\Script\Player\Controller\SlideController.cs" />
     <Compile Include="Assets\Script\Player\Controller\WallController.cs" />
     <Compile Include="Assets\Script\Player\Controller\WallMovementController.cs" />
+    <Compile Include="Assets\Script\Player\CoordinateDB.cs" />
     <Compile Include="Assets\Script\Player\Model\PlayerModel.cs" />
     <Compile Include="Assets\Script\Player\PlayerAplication.cs" />
     <Compile Include="Assets\Script\Player\PlayerElement.cs" />

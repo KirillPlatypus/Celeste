@@ -13,13 +13,13 @@ public class CheckPoint : MonoBehaviour
 
     private void Awake()
     {
-        updated += saveCoordinate.UpdateCoordinate;
+        updated += saveCoordinate.CoordinateUpdate;
 
     }
     public void Update()
     {
 
-        if (OnCheckpoint && gameObject.name != saveCoordinate.coordinateTable.Name)
+        if (OnCheckpoint && gameObject.name != ModuleDB.coordinateTable.Name)
         {
             updated(gameObject.name);
         }

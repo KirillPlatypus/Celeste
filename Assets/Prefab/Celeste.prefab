@@ -164,7 +164,6 @@ GameObject:
   - component: {fileID: 8678072714877897355}
   - component: {fileID: 8678072714877897354}
   - component: {fileID: 8678072714877897396}
-  - component: {fileID: 8264801283570613072}
   - component: {fileID: 8678072714877897359}
   - component: {fileID: 8678072714877897399}
   - component: {fileID: 8678072714877897356}
@@ -176,10 +175,11 @@ GameObject:
   - component: {fileID: 8678072714877897358}
   - component: {fileID: 6095906164413092914}
   - component: {fileID: 8678072714877897352}
+  - component: {fileID: 6374299120540029685}
   - component: {fileID: 8678072714877897393}
   - component: {fileID: 8678072714877897395}
-  - component: {fileID: 8678072714877897392}
   - component: {fileID: 926686940864807827}
+  - component: {fileID: 1243865457783090447}
   m_Layer: 9
   m_Name: Celeste
   m_TagString: Player
@@ -232,7 +232,7 @@ MonoBehaviour:
   cinemachine: {fileID: 0}
   illusion: {fileID: 7331442837230563641, guid: 0e451ab5108b41341877a22221e9a256,
     type: 3}
-  saveCoordinate: {fileID: 8264801283570613072}
+  saveCoordinate: {fileID: 6374299120540029685}
   playerCamera: {fileID: 6095906164413092914}
   _Body: {fileID: 8678072714877897395}
   animationPlayer: {fileID: 926686940864807827}
@@ -288,18 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0.13
---- !u!114 &8264801283570613072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572839d9721efc74cb7d686547f5aab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8678072714877897359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +437,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd14c39122509044a5e53bf428d3aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6374299120540029685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c3034792fe4bd40945b508a2aee46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8678072714877897397}
 --- !u!212 &8678072714877897393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -521,32 +522,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &8678072714877897392
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.010118246, y: -0.040598154}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.34, y: 0.4}
-    newSize: {x: 12, y: 12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.19239807, y: 0.3040192}
-  m_EdgeRadius: 0
 --- !u!95 &926686940864807827
 Animator:
   serializedVersion: 3
@@ -566,6 +541,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &1243865457783090447
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.015650988, y: -0.005692959}
+  m_Size: {x: 0.25178576, y: 0.3715353}
+  m_Direction: 0
 --- !u!1 &8678072715251700047
 GameObject:
   m_ObjectHideFlags: 0

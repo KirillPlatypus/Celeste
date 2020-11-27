@@ -15,7 +15,7 @@ public class PlayerView : PlayerElement
 
     private void Start()
     {
-        transform.position = aplication.saveCoordinate.ReadCoordinate();
+        transform.position = aplication.saveCoordinate.CoordinateRead();
     }
 
     private void FixedUpdate()
