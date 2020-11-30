@@ -9,3 +9,5 @@ Logs/
 Library/
 Temp/
 *.cache
+*.vscode/
+UserSettings/

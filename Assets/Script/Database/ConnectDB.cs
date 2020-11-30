@@ -10,14 +10,6 @@ namespace DB
         public ConnectDB(string path)
         {
             connection = new SqliteConnection($"Data Source={path}");
-            if (!File.Exists($"{path}"))
-            {
-                SqliteConnection.CreateFile(path);
-            }
-            else
-            {
-               // Debug.Log("Connect seccuess");
-            }
         }
         internal void OpenConnection()
         {
