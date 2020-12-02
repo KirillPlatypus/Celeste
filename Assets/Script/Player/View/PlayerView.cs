@@ -1,9 +1,5 @@
-﻿using Cinemachine;
-using System;
-using System.Collections;
-using UnityEditor.VersionControl;
+﻿using System;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class PlayerView : PlayerElement
 {
@@ -85,9 +81,9 @@ public class PlayerView : PlayerElement
 
 
 
-        if (aplication._Body.velocity.y <= -2.5f && !aplication.dash)
+        if (aplication._Body.velocity.y <= -3.0f)
         {
-            aplication._Body.velocity = new Vector2(aplication._Body.velocity.x, -2.0f);
+            aplication._Body.velocity = new Vector2(aplication._Body.velocity.x, -3.0f);
         }
         if (aplication.playerModel.onSpring)
         {

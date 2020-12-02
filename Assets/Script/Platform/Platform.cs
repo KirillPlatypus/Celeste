@@ -23,7 +23,7 @@ public class Platform : MonoBehaviour
     {
         if(objectHigher != null)
         {
-            var _message = Player.transform.position.y <= transform.position.y ? false : true;
+            var _message = Player.transform.position.y *0.70f <= transform.position.y ? false : true;
 
             if (_message)
             {
