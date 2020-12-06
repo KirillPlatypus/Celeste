@@ -65,6 +65,7 @@
      <Compile Include="Assets\Script\Database\CoordinateTable.cs" />
      <Compile Include="Assets\Script\CheckAnymore\Wall\CheckWall.cs" />
      <Compile Include="Assets\Script\Player\Controller\JumpController.cs" />
+     <Compile Include="Assets\Script\BackGround\Parallax.cs" />
      <Compile Include="Assets\Script\Player\Controller\AnimationController.cs" />
      <Compile Include="Assets\Script\Player\Controller\CoordinateController.cs" />
      <Compile Include="Assets\Script\Player\Controller\SlideController.cs" />
@@ -83,7 +84,6 @@
      <Compile Include="Assets\Script\Player\Controller\RebountOffSpring.cs" />
      <Compile Include="Assets\Script\Player\Controller\JumpWallController.cs" />
      <Compile Include="Assets\Script\Player\Controller\IllusionPlayer.cs" />
-     <Compile Include="Assets\Script\BackGround\Parallax.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
