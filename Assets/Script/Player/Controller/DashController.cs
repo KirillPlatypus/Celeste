@@ -8,7 +8,7 @@ namespace Controller
     {
         [SerializeField] private KeyCode keyDash;
 
-        private DashState dashState;
+        [SerializeField] private DashState dashState;
 
         [SerializeField] private Vector2 savedVelocity;
         [SerializeField] private Vector2 savedDiraction;
@@ -51,7 +51,7 @@ namespace Controller
 
 
                             aplication._Body.velocity = savedDiraction.normalized *
-                              new Vector2((float)(aplication.playerModel.dashSpeed), (float)aplication.playerModel.dashSpeed);
+                              new Vector2((float)aplication.playerModel.dashSpeed, (float)aplication.playerModel.dashSpeed);
 
 
                         }

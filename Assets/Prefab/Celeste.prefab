@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 6095906164413092914}
   - component: {fileID: 8678072714877897352}
   - component: {fileID: 6374299120540029685}
+  - component: {fileID: 6055027253105648215}
   - component: {fileID: 8678072714877897393}
   - component: {fileID: 8678072714877897395}
   - component: {fileID: 926686940864807827}
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8678072714877897393}
   transform: {fileID: 8678072714877897397}
+  collider: {fileID: 1243865457783090447}
   playerView: {fileID: 8678072714877897396}
   playerModel: {fileID: 8678072714877897354}
   direction: {fileID: 8678072714877897352}
@@ -233,6 +235,7 @@ MonoBehaviour:
   illusion: {fileID: 7331442837230563641, guid: 0e451ab5108b41341877a22221e9a256,
     type: 3}
   saveCoordinate: {fileID: 6374299120540029685}
+  death: {fileID: 6055027253105648215}
   playerCamera: {fileID: 6095906164413092914}
   _Body: {fileID: 8678072714877897395}
   animationPlayer: {fileID: 926686940864807827}
@@ -268,6 +271,7 @@ MonoBehaviour:
   JumpWall: 0
   JumpHangWall: 0
   SlideWall: 0
+  Death: 0
   DashingTime: 1
   Dash: 0
   OnWall: 0
@@ -450,6 +454,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8678072714877897397}
+--- !u!114 &6055027253105648215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d0c61dfc02f2d9f976bd6a4322b0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &8678072714877897393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -465,6 +481,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

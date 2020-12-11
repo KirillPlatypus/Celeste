@@ -6,6 +6,7 @@ public sealed class PlayerAplication : MonoBehaviour
 {
     public new SpriteRenderer renderer;
     public new Transform transform;
+    public new Collider2D collider;
 
     public PlayerView playerView;
     public PlayerModel playerModel;
@@ -34,6 +35,8 @@ public sealed class PlayerAplication : MonoBehaviour
     public IllusionPlayer illusion;
 
     public CoordinateController saveCoordinate;
+
+    public DeathController death;
 
     public CameraPlayer playerCamera;
     public Rigidbody2D _Body;

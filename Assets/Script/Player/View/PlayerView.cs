@@ -65,6 +65,8 @@ public class PlayerView : PlayerElement
         aplication.rebount.GetSpringPower();
         #endregion
 
+        Death();
+
 
 
         #region Diraction
@@ -208,5 +210,12 @@ public class PlayerView : PlayerElement
     public void StopWallJump()
     {
         aplication.playerModel.JumpWall = false;
+    }
+
+    public void Death()
+    {
+        if (aplication.playerModel.Death)
+            aplication.death.Death(); 
+
     }
 }

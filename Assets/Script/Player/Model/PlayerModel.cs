@@ -28,6 +28,7 @@ public class PlayerModel : PlayerElement
     public bool JumpWall;
     public bool JumpHangWall;
     public bool SlideWall;
+    public bool Death;
 
     public bool DashingTime = true;
     public bool Dash;
