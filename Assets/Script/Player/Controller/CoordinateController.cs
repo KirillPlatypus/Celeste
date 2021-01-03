@@ -1,28 +1,35 @@
 ﻿using DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+using System.Threading;
 
-namespace Controller
+namespace Player.Controller
 {
-    public class CoordinateController : MonoBehaviour
+    public class CoordinateController : PlayerElement
     {
-        [SerializeField] private Transform player;
 
-        private CoordinateCommand coordinate = new CoordinateCommand();
+        private Thread dataThread;
 
-        public void CoordinateUpdate(string name)
+        CoordinateCommand command;
+
+        void Start()
         {
-            coordinate.UpdateCoordinate(name, player);
-            coordinate.ReadCoordinate();
+            dataThread = new Thread(new ParameterizedThreadStart(CoordinateCommand.UpdateCoordinate));
+        }
+        public void CoordinateUpdate(object name)
+        {
+            command = new CoordinateCommand(aplication.transform);
+
+            if (dataThread.ThreadState != ThreadState.Running)
+            {
+                dataThread = new Thread(new ParameterizedThreadStart(CoordinateCommand.UpdateCoordinate));
+
+                dataThread.Start(name);
+            }
         }
 
         public Vector3 CoordinateRead()
         {
-            coordinate.ReadCoordinate();
+            CoordinateCommand.ReadCoordinate();
             return new Vector3((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY, 0) ;
         }
     }

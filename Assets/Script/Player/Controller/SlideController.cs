@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-public class SlideController : PlayerElement
+namespace Player.Controller
 {
-    public void PlayerSlide()
+    public class SlideController : PlayerElement
     {
-        if ((aplication.playerModel.OnRightWall && aplication.playerModel.horizontalRaw != 0))
+        public void PlayerSlide()
         {
-            aplication._Body.velocity = Vector2.zero;
-            aplication._Body.drag = aplication.playerModel.drag;
+            if ((aplication.playerModel.OnRightWall && aplication.playerModel.horizontalRaw != 0))
+            {
+                aplication._Body.velocity = Vector2.zero;
+                aplication._Body.drag = aplication.playerModel.drag;
 
-            aplication.playerModel.SlideWall = true;
+                aplication.playerModel.SlideWall = true;
 
-        }
-        else 
-        {
-            aplication.playerModel.SlideWall = false;
+            }
+            else
+            {
+                aplication.playerModel.SlideWall = false;
 
-            aplication._Body.drag = 0;
+                aplication._Body.drag = 0;
+            }
         }
     }
 }

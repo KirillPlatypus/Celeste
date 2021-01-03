@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class PlayerElement : MonoBehaviour
+namespace Player
 {
-    public PlayerAplication aplication { get { return FindObjectOfType<PlayerAplication>(); } }
+    public class PlayerElement : MonoBehaviour
+    {
+        public PlayerAplication aplication { get { return FindObjectOfType<PlayerAplication>(); } }
+    }
 }

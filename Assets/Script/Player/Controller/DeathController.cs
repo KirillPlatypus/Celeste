@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Controller
+namespace Player.Controller
 {
     public class DeathController : PlayerElement
     {
@@ -59,9 +59,6 @@ namespace Controller
                     break;
 
             }
-
-            Debug.Log(deathStation.ToString());
-
         }
 
         private enum DeathState

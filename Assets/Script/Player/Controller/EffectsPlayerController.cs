@@ -1,8 +1,6 @@
-﻿using Controller;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Controller
+namespace Player.Controller
 {
     public sealed class EffectsPlayerController : PlayerElement
     {

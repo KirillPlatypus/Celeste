@@ -1,4 +1,4 @@
-﻿namespace Controller
+﻿namespace Player.Controller
 {
     public sealed class CameraPlayer : PlayerElement
     {

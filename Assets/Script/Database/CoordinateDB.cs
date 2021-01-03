@@ -1,11 +1,8 @@
-﻿using UnityEditor;
-using Mono.Data.Sqlite;
-using DB;
-using System;
+﻿using Mono.Data.Sqlite;
 using UnityEngine;
-using System.Collections;
 using System.Threading.Tasks;
 using System.IO;
+using System;
 
 
 namespace DB
@@ -15,14 +12,22 @@ namespace DB
         public static CoordinateTable coordinateTable = new CoordinateTable();
     }
 
-    internal class CoordinateCommand
+
+    public class CoordinateCommand
     {
         private static string path = Path.GetFullPath("Coordinate.sqlite3");
 
         private static ConnectDB connectDB = new ConnectDB(path);
 
+        private static Vector2 player;
 
-        public async Task<string> InsertCoordinate(string name, Transform player)
+        public CoordinateCommand(Transform _player)
+        {
+            player = _player.position;
+        }
+
+
+        public async Task<string> InsertCoordinate(string name)
         {
             string add = "INSERT INTO coordinate ('CoordinateX', 'CoordinateY', 'Name', 'Id') VALUES (@CoordinateX, @CoordinateY, @Name, @Id)";
 
@@ -32,8 +37,8 @@ namespace DB
                 await Task.Run(() => ReadCoordinate());
                 connectDB.OpenConnection();
 
-                commandSQl.Parameters.AddWithValue("@CoordinateX", player.position.x);
-                commandSQl.Parameters.AddWithValue("@CoordinateY", player.position.y);
+                commandSQl.Parameters.AddWithValue("@CoordinateX", player.normalized.x);
+                commandSQl.Parameters.AddWithValue("@CoordinateY", player.normalized.y);
                 commandSQl.Parameters.AddWithValue("@Name", name);
                 commandSQl.Parameters.AddWithValue("@Id", 1);
 
@@ -45,12 +50,12 @@ namespace DB
             return "Add";
         }
 
-        public void UpdateCoordinate(string name, Transform player)
+        public static void UpdateCoordinate(object name)
         {
-
-            string update = $"UPDATE coordinate SET CoordinateX = '{player.position.x}'," +
-                        $" CoordinateY = '{player.position.y}'," +
-                        $" Name = '{name}' WHERE Id = 1;";
+       
+        string update = $"UPDATE coordinate SET CoordinateX = '{player.x}'," +
+                        $" CoordinateY = '{player.y}'," +
+                        $" Name = '{(string)name}' WHERE Id = 1;";
 
 
             using (var commandSQl = new SqliteCommand(update, connectDB.connection))
@@ -58,19 +63,22 @@ namespace DB
 
                 connectDB.OpenConnection();
 
-                commandSQl.Parameters.AddWithValue("@CoordinateX", player.position.x);
-                commandSQl.Parameters.AddWithValue("@CoordinateY", player.position.y);
-                commandSQl.Parameters.AddWithValue("@Name", name);
+                commandSQl.Parameters.AddWithValue("@CoordinateX", player.x);
+                commandSQl.Parameters.AddWithValue("@CoordinateY", player.y);
+                commandSQl.Parameters.AddWithValue("@Name", (string)name);
                 commandSQl.Parameters.AddWithValue("@Id", 1);
 
 
                 var result = commandSQl.ExecuteNonQuery();
 
+                ReadCoordinate();
+
                 connectDB.CloseConnection();
+
             }
         }
 
-        public Vector2 ReadCoordinate()
+        public static Vector2 ReadCoordinate()
         {
             string add = "SELECT * FROM coordinate";
 
@@ -86,11 +94,17 @@ namespace DB
                     while (result.Read())
                     {
 
-                        ModuleDB.coordinateTable.CoordinateX = (decimal)result["CoordinateX"];
-                        ModuleDB.coordinateTable.CoordinateY = (decimal)result["CoordinateY"];
+                        //result.GetFloat(result.GetOrdinal("CoordinateX"));
+                        //result.GetFloat(result.GetOrdinal("CoordinateY"));
+                        ModuleDB.coordinateTable.CoordinateX = (float)result["CoordinateX"];
+                        ModuleDB.coordinateTable.CoordinateY = (float)result["CoordinateY"];
                         ModuleDB.coordinateTable.Name = (string)result["Name"];
                         ModuleDB.coordinateTable.Id = (long)result["Id"];
 
+                        Debug.Log(result["CoordinateX"]);
+                        Debug.Log(result["CoordinateY"]);
+                        Debug.Log(result.GetString(result.GetOrdinal("Name")));
+                        Debug.Log(result["Id"]);
                     }
                     return new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);
                 }
@@ -100,11 +114,11 @@ namespace DB
             return new Vector2(0, 0);
         }
 
-        public async Task<string> DeleteCoordinate()
+        public async Task DeleteCoordinate()
         {
             string del = "DELETE FROM coordinate WHERE Id = 1";
 
-            await Task.Run(() => ReadCoordinate());
+            await Task.Run(ReadCoordinate);
 
             connectDB.OpenConnection();
 
@@ -113,7 +127,6 @@ namespace DB
             var result = commandSQl.ExecuteNonQuery();
 
             connectDB.CloseConnection();
-            return "Deleted";
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Controller
+namespace Player.Controller
 {
     public sealed class IllusionPlayer : PlayerElement
     {

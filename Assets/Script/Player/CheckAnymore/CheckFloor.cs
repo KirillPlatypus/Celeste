@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 
-public class CheckFloor : PlayerElement
+namespace Player.CheckAnymore
 {
-    [SerializeField] private float radius;
-    [SerializeField] private GameObject FloorPoint;
-    [SerializeField] private LayerMask mask;
-
-    private void Update()
+    public class CheckFloor : ICheckAnymore
     {
-        aplication.playerModel.OnFloor = Physics2D.OverlapCircle(FloorPoint.transform.position, radius, mask);
-    }
+        [SerializeField] private GameObject FloorPoint;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
+        private void Update()
+        {
+            aplication.playerModel.OnFloor = Physics2D.OverlapCircle(FloorPoint.transform.position, radius, mask);
+        }
 
-        Gizmos.DrawWireSphere(FloorPoint.transform.position, radius);
+        public override void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawWireSphere(FloorPoint.transform.position, radius);
+        }
     }
 }

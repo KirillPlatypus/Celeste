@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e3e39daf2ed844f90fb6bdd527a764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSpring: 0
-  PowerRebount: {x: 20, y: 9}
+  playerAplication: {fileID: 0}
+  power: 7.4
   animation: {fileID: 264595226216060510}
 --- !u!212 &264595226216060511
 SpriteRenderer:
@@ -65,6 +65,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -1,36 +1,39 @@
 ﻿using UnityEngine;
-using Controller;
+using Player.Controller;
 using DB;
+using Player.CheckAnymore;
+using System.Linq;
 
-public class CheckPoint : IPlayerObjects 
+public class CheckPoint : ICheckAnymore
 {
-    [SerializeField] internal bool OnCheckpoint;
-    [SerializeField] private LayerMask mask;
-    [SerializeField] private CoordinateController saveCoordinate;
-
     private delegate void updateCoordinate(string name);
     private event updateCoordinate updated;
 
-    private void Awake()
+
+    [SerializeField] internal bool OnCheckpoint;
+    [SerializeField] private CoordinateController saveCoordinate;
+
+
+    private void Start()
     {
         updated += saveCoordinate.CoordinateUpdate;
-
     }
+
     public void Update()
     {
-
         if (OnCheckpoint && gameObject.name != ModuleDB.coordinateTable.Name)
         {
-            updated(gameObject.name);
+
+            saveCoordinate.CoordinateUpdate(gameObject.name);
+
         }
-
         OnCheckpoint = Physics2D.OverlapBox(transform.position, transform.localScale, 1f, mask);
-
     }
 
-    private void OnDrawGizmos()
+    public override void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, transform.localScale);
     }
+
 }

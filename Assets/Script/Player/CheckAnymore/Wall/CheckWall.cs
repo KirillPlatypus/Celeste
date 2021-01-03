@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 
-internal class CheckWall : PlayerElement
+namespace Player.CheckAnymore
 {
-    [SerializeField] private GameObject leftWallPoint;
-    [SerializeField] private GameObject rightWallPoint;
-    [SerializeField] private Vector2 size;
-    [SerializeField] private float radius;
-    [SerializeField] private LayerMask mask;
 
-    private void Update()
+    internal class CheckWall : ICheckAnymore
     {
-        aplication.playerModel.OnWall = Physics2D.OverlapBox(leftWallPoint.transform.position, size, radius, mask)
-                                     || Physics2D.OverlapBox(rightWallPoint.transform.position, size, radius, mask);
-        aplication.playerModel.OnLeftWall = Physics2D.OverlapBox(leftWallPoint.transform.position, size, radius, mask);
-        aplication.playerModel.OnRightWall = Physics2D.OverlapBox(rightWallPoint.transform.position, size, radius, mask);
-    }
+        [SerializeField] private GameObject leftWallPoint;
+        [SerializeField] private GameObject rightWallPoint;
+        [SerializeField] private Vector2 size;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
+        private void Update()
+        {
+            aplication.playerModel.OnWall = Physics2D.OverlapBox(leftWallPoint.transform.position, size, radius, mask)
+                                         || Physics2D.OverlapBox(rightWallPoint.transform.position, size, radius, mask);
+            aplication.playerModel.OnLeftWall = Physics2D.OverlapBox(leftWallPoint.transform.position, size, radius, mask);
+            aplication.playerModel.OnRightWall = Physics2D.OverlapBox(rightWallPoint.transform.position, size, radius, mask);
+        }
 
-        Gizmos.DrawWireCube(leftWallPoint.transform.position, size);
-        Gizmos.DrawWireCube(rightWallPoint.transform.position, size);
+        public override void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawWireCube(leftWallPoint.transform.position, size);
+            Gizmos.DrawWireCube(rightWallPoint.transform.position, size);
+        }
     }
 }

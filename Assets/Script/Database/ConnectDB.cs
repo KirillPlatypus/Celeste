@@ -1,6 +1,4 @@
 ﻿using Mono.Data.Sqlite;
-using System.IO;
-using UnityEngine;
 
 namespace DB
 {
