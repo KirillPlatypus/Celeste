@@ -2,30 +2,45 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 
 namespace Game
 {
     public class LoadScene  : MonoBehaviour
     {
+        [SerializeField] Transform Player;
 
-        public void LoadNextScene()
+        private IDataAccessor data ;
+
+        static int i = 0;
+        private void Start()
         {
-            StartCoroutine( Loading(SceneManager.GetActiveScene().buildIndex + 1));
+            if(i == 0)
+            {
+                data = new SceneDataAccessor();
+
+                data.ReadData();
+
+                if(ModuleDB.sceneTable.SceneName != SceneManager.GetActiveScene().name)
+                {
+                    SceneManager.LoadScene((int)ModuleDB.sceneTable.buildIndex);
+                }
+
+                data = new CoordinateDataAccessor(Player);
+
+                data.ReadData();
+
+                Player.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);
+                i = 1;
+            }
         }
-
-
-        public void LoadLastScene()
-        {
-            StartCoroutine( Loading(SceneManager.GetActiveScene().buildIndex - 1));
-        }
-
-
-        IEnumerator Loading(int scensIndex)
+        
+        public IEnumerator Loading(string sceneName)
         {
             yield return new WaitForSeconds(1f);
-
-            SceneManager.LoadScene(scensIndex);
+            
+            SceneManager.LoadScene(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/MainScene/{sceneName}.unity"));
         }
     }
 }

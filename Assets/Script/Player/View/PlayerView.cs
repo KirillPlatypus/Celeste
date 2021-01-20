@@ -13,26 +13,6 @@ namespace Player.View
 
         private double powerWallJump;
 
-        Scene nowScene;
-
-        private void Start()
-        {
-            nowScene = SceneManager.GetActiveScene();
-        }
-
-        private void Awake()
-        {
-
-            if (nowScene == SceneManager.GetActiveScene())
-            {
-                transform.position = aplication.saveCoordinate.CoordinateRead();
-            }
-            else
-            {
-                nowScene = SceneManager.GetActiveScene();
-            }
-        }
-
         private void Update()
         {
             aplication.dash.SetDash();

@@ -55,13 +55,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Game\DataAccess\SceneDataAccessor.cs" />
      <Compile Include="Assets\Script\PlayerObject\Traps\ITrap.cs" />
      <Compile Include="Assets\Script\Player\Controller\EffectsPlayerController.cs" />
      <Compile Include="Assets\Script\Player\CheckAnymore\CheckFloor.cs" />
      <Compile Include="Assets\Script\Database\ConnectDB.cs" />
      <Compile Include="Assets\Script\PlayerObject\Platform\Platform.cs" />
      <Compile Include="Assets\Script\Player\View\PlayerView.cs" />
-     <Compile Include="Assets\Script\Database\CoordinateTable.cs" />
+     <Compile Include="Assets\Script\Database\Table\CoordinateTable.cs" />
      <Compile Include="Assets\Script\Game\LoadScene.cs" />
      <Compile Include="Assets\Script\Player\CheckAnymore\Wall\CheckWall.cs" />
      <Compile Include="Assets\Script\Player\Controller\Move\MovementController.cs" />
@@ -72,15 +73,17 @@
      <Compile Include="Assets\Script\PlayerObject\Spring\ISpring.cs" />
      <Compile Include="Assets\Script\PlayerObject\IPlayerObjects.cs" />
      <Compile Include="Assets\Script\Player\Controller\AnimationController.cs" />
-     <Compile Include="Assets\Script\Player\Controller\CoordinateController.cs" />
      <Compile Include="Assets\Script\Player\Controller\SlideController.cs" />
      <Compile Include="Assets\Script\Player\Controller\ResolutionDirectionController.cs" />
      <Compile Include="Assets\Script\PlayerObject\Traps\Spike\Spike.cs" />
+     <Compile Include="Assets\Script\Game\DataAccess\CoordinateDataAccessor.cs" />
      <Compile Include="Assets\Script\Player\Model\PlayerModel.cs" />
-     <Compile Include="Assets\Script\Database\CoordinateDB.cs" />
+     <Compile Include="Assets\Script\Database\Command\CoordinateDB.cs" />
      <Compile Include="Assets\Script\Player\Controller\WallController.cs" />
      <Compile Include="Assets\Script\Player\PlayerAplication.cs" />
+     <Compile Include="Assets\Script\Database\Table\SceneTable.cs" />
      <Compile Include="Assets\Script\Player\Controller\Move\IMovement.cs" />
+     <Compile Include="Assets\Script\Game\DataAccess\IDataAccessor.cs" />
      <Compile Include="Assets\Script\Player\Controller\Jump\IJump.cs" />
      <Compile Include="Assets\Script\Player\Controller\DashController.cs" />
      <Compile Include="Assets\Script\Player\Controller\DeathController.cs" />

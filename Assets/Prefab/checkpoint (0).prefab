@@ -47,6 +47,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
-  OnCheckpoint: 0
-  saveCoordinate: {fileID: 6374299120540029685, guid: cbd90c34defddb547b5d5bb84b42043f,
+  saveCoordinate: {fileID: 2575198579371147038, guid: ebe5ef796889a6d0cb8ce7a1eae47a0a,
     type: 3}
+  saveScene: {fileID: 2575198579371147037, guid: ebe5ef796889a6d0cb8ce7a1eae47a0a,
+    type: 3}
+  OnCheckpoint: 0

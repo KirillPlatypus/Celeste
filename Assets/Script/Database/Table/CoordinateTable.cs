@@ -1,4 +1,4 @@
-﻿namespace DB
+﻿namespace DB.Table
 {
     class CoordinateTable
     {

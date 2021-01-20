@@ -49,7 +49,7 @@ namespace Player.Controller
 
                     aplication.playerModel.Death = false;
 
-                    transform.position = aplication.saveCoordinate.CoordinateRead();
+                    transform.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);
 
                     aplication.collider.enabled = true;
 

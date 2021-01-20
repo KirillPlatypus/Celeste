@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 6095906164413092914}
   - component: {fileID: 8678072714877897352}
   - component: {fileID: 2151314619607700207}
-  - component: {fileID: 6374299120540029685}
   - component: {fileID: 6055027253105648215}
   - component: {fileID: 8678072714877897393}
   - component: {fileID: 8678072714877897395}
@@ -234,7 +233,6 @@ MonoBehaviour:
   cinemachine: {fileID: 0}
   illusion: {fileID: 7331442837230563641, guid: 0e451ab5108b41341877a22221e9a256,
     type: 3}
-  saveCoordinate: {fileID: 6374299120540029685}
   death: {fileID: 6055027253105648215}
   playerCamera: {fileID: 6095906164413092914}
   _Body: {fileID: 8678072714877897395}
@@ -451,18 +449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
---- !u!114 &6374299120540029685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c3034792fe4bd40945b508a2aee46f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6055027253105648215
 MonoBehaviour:
   m_ObjectHideFlags: 0

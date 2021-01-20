@@ -37,8 +37,6 @@ namespace Player
 
         public IllusionPlayer illusion;
 
-        public CoordinateController saveCoordinate;
-
         public DeathController death;
 
         public CameraPlayer playerCamera;

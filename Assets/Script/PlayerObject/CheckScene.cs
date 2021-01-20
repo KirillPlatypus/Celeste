@@ -9,16 +9,17 @@ namespace PlayerObject
     public class CheckScene : ICheckAnymore
     {
         [SerializeField] private LoadScene load;
+        [SerializeField] private string NextSceneName;
 
         [SerializeField] private bool OnCheckScene;
-
         void Update()
         {
             OnCheckScene = Physics2D.OverlapBox(transform.position, transform.localScale, 1f, mask);
 
             if (OnCheckScene )
             {
-                load.LoadNextScene();
+
+                StartCoroutine(load.Loading(NextSceneName));
             }
         }
 
