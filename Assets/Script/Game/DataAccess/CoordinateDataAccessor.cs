@@ -1,6 +1,7 @@
 ﻿using DB;
 using UnityEngine;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Game
@@ -26,12 +27,7 @@ namespace Game
         {
             command = new CoordinateCommand(Player, SceneManager.GetActiveScene().name);
 
-            if (dataThread.ThreadState != ThreadState.Running)
-            {
-                dataThread = new Thread(new ParameterizedThreadStart(CoordinateCommand.UpdateCoordinate));
-
-                dataThread.Start(varRowOfRequest);
-            }
+            Task.Run(() => CoordinateCommand.UpdateCoordinate((string)varRowOfRequest));
         }
 
         public override void ReadData()

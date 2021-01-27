@@ -39,10 +39,10 @@ namespace DB
             sceneName = scenename;
         }
 
-        public static void UpdateCoordinate(object name)
+        public static async void UpdateCoordinate(object name)
         {
        
-            ReadCoordinate();
+            await ReadCoordinate();
             
             string update = $"UPDATE coordinate SET CoordinateX = '{player.x}'," +
                         $" CoordinateY = '{player.y}'," +
@@ -54,15 +54,15 @@ namespace DB
 
                 connectDB.OpenConnection();
 
-                var result = commandSQl.ExecuteNonQuery();
+                var result = await commandSQl.ExecuteNonQueryAsync();
 
-                ReadCoordinate();
+                await ReadCoordinate();
 
                 connectDB.CloseConnection();
             }
         }
 
-        public static Vector2 ReadCoordinate()
+        public static async Task<Vector2> ReadCoordinate()
         {
             string add = "SELECT coo. *, sc.SceneName FROM coordinate coo LEFT JOIN Scene sc ON sc.Id = coo.IdScene";
 
@@ -71,7 +71,7 @@ namespace DB
 
                 connectDB.OpenConnection();
 
-                var result = commandSQl.ExecuteReader();
+                var result = await commandSQl.ExecuteReaderAsync();
 
                 if (result.HasRows)
                 {
