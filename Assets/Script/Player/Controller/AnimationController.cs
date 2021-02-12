@@ -9,7 +9,7 @@ namespace Player.Controller
         private void Update()
         {
             foreach (IAnimation Anim in concreteAnimation) {
-                Anim.CauseChange("");
+                Anim.CauseChange();
             }
         }
     }
@@ -17,12 +17,12 @@ namespace Player.Controller
 
     interface IAnimation
     {
-        void CauseChange(string name); 
+        void CauseChange(); 
     }
 
     class MoveAnimation : PlayerElement, IAnimation
     {
-        public void CauseChange(string name)
+        public void CauseChange()
         {
             if (aplication.playerModel.OnFloor)
             {
@@ -37,17 +37,17 @@ namespace Player.Controller
     }
     class JumpAnimation : PlayerElement, IAnimation
     {
-        public void CauseChange(string name)
+        public void CauseChange()
         {
             if (!aplication.playerModel.OnFloor || aplication.playerModel.Jump)
             {
-                if (aplication._Body.velocity.y > 0)
+                if (aplication._Body.velocity.y > 1)
                 {
                     aplication.animationPlayer.SetBool("IsJumpUp", true);
                     aplication.animationPlayer.SetBool("IsJumpDown", false);
 
                 }
-                else if (aplication._Body.velocity.y < 0)
+                else if (aplication._Body.velocity.y < -1)
                 {
                     aplication.animationPlayer.SetBool("IsJumpUp", false);
                     aplication.animationPlayer.SetBool("IsJumpDown", true);
@@ -64,7 +64,7 @@ namespace Player.Controller
     }
     class DashAnimation : PlayerElement, IAnimation
     {
-        public void CauseChange(string name)
+        public void CauseChange()
         {
             aplication.animationPlayer.SetBool("IsDash", aplication.playerModel.Dash);
         }
@@ -72,7 +72,7 @@ namespace Player.Controller
 
     class DeathAnimation : PlayerElement, IAnimation
     {
-        public void CauseChange(string name)
+        public void CauseChange()
         {
 
         }

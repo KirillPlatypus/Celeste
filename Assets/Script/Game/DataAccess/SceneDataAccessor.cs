@@ -11,7 +11,7 @@ namespace Game
 
         public override Command command {get; set;}
 
-        [SerializeField] Transform Player;
+        Transform Player;
         static string Last, Active;
 
         public SceneDataAccessor(string LastScene, string ActiveScene)
@@ -23,8 +23,6 @@ namespace Game
         }
 
         public SceneDataAccessor( ) : base() {}
-
-        public SceneDataAccessor(Transform _player) : base(_player) {}
 
         public override void UpdateData(object varRowOfRequest)
         {

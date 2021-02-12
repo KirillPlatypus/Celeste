@@ -2,7 +2,7 @@
 
 namespace DB
 {
-    class ConnectDB
+    public class ConnectDB
     {
         public SqliteConnection connection;
         public ConnectDB(string path)

@@ -10,9 +10,6 @@ namespace Game
         public abstract Command command {get; set;}
 
         public IDataAccessor() {}
-        
-        public IDataAccessor(Transform _player) {}
-
 
         public abstract void UpdateData(object varRowOfRequest);
 

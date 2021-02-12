@@ -17,7 +17,7 @@ namespace Game
 
         public CoordinateDataAccessor() : base() {}
 
-        public CoordinateDataAccessor(Transform _player) : base(_player)
+        public CoordinateDataAccessor(Transform _player)
         {
             Player = _player;
 

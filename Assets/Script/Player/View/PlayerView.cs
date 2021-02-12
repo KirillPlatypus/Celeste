@@ -166,8 +166,6 @@ namespace Player.View
             else
             {
                 aplication.playerModel.SlideWall = false;
-
-                aplication._Body.drag = 0;
             }
 
             if (aplication.playerModel.JumpWall)

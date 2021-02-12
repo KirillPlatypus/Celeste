@@ -3,20 +3,17 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.IO;
 using System;
-using DB.Table;
 
-
-    internal static class ModuleDB
-    {
-        public static CoordinateTable coordinateTable = new CoordinateTable();
-        public static SceneTable sceneTable = new SceneTable();
-    }
 
 namespace DB
 {
     
     public abstract class Command
     {
+        private static string path = Path.GetFullPath("Coordinate.sqlite3");
+
+        protected static ConnectDB connectDB = new ConnectDB(path);
+
         protected Command(Transform _player, string scenename)
         {
 
@@ -25,10 +22,6 @@ namespace DB
 
     public class CoordinateCommand : Command
     {
-        private static string path = Path.GetFullPath("Coordinate.sqlite3");
-
-        private static ConnectDB connectDB = new ConnectDB(path);
-
         private static Vector2 player;
 
         private static string sceneName;
@@ -105,10 +98,6 @@ namespace DB
 
     public class SceneCommand : Command
      {
-        private static string path = Path.GetFullPath("Coordinate.sqlite3");
-
-        private static ConnectDB connectDB = new ConnectDB(path);
-
         private static Vector2 player;
 
         private static string sceneName;

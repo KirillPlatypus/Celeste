@@ -9,7 +9,7 @@ namespace Player.Controller
             if ((aplication.playerModel.OnRightWall && aplication.playerModel.horizontalRaw != 0))
             {
                 aplication._Body.velocity = Vector2.zero;
-                aplication._Body.drag = aplication.playerModel.drag;
+                aplication._Body.gravityScale = 0.1f;
 
                 aplication.playerModel.SlideWall = true;
 
@@ -18,7 +18,7 @@ namespace Player.Controller
             {
                 aplication.playerModel.SlideWall = false;
 
-                aplication._Body.drag = 0;
+                aplication._Body.gravityScale = 1;
             }
         }
     }
