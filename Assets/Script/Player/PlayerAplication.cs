@@ -15,6 +15,7 @@ namespace Player
 
         public PlayerView playerView;
         public PlayerModel playerModel;
+        
         public ResolutionDirectionController direction;
 
         public Movement movement;
@@ -32,14 +33,10 @@ namespace Player
 
         public new AnimationController animation;
 
-        public CinemachineVirtualCamera cinemachine;
-        internal CinemachineBasicMultiChannelPerlin cameraShake;
-
         public IllusionPlayer illusion;
 
         public DeathController death;
 
-        public CameraPlayer playerCamera;
         public Rigidbody2D _Body;
         public Animator animationPlayer;
     }

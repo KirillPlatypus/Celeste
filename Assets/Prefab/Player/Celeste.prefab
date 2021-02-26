@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3679097722416991541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4617411821392953024}
+  - component: {fileID: 2748344279314092507}
+  m_Layer: 0
+  m_Name: Point Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4617411821392953024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679097722416991541}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8678072714877897397}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2748344279314092507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679097722416991541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &8678072713265054666
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,13 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d61df84dc5803843867e0ebfd530138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftWallPoint: {fileID: 8678072713265054666}
+  rightWallPoint: {fileID: 8678072714438928338}
+  size: {x: 0.03, y: 0.27}
   radius: 1
   mask:
     serializedVersion: 2
     m_Bits: 256
-  leftWallPoint: {fileID: 8678072713265054666}
-  rightWallPoint: {fileID: 8678072714438928338}
-  size: {x: 0.03, y: 0.27}
 --- !u!1 &8678072713644561288
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,13 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d61df84dc5803843867e0ebfd530138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftWallPoint: {fileID: 8678072713265054666}
+  rightWallPoint: {fileID: 8678072714438928338}
+  size: {x: 0.03, y: 0.27}
   radius: 0
   mask:
     serializedVersion: 2
     m_Bits: 256
-  leftWallPoint: {fileID: 8678072713265054666}
-  rightWallPoint: {fileID: 8678072714438928338}
-  size: {x: 0.03, y: 0.27}
 --- !u!1 &8678072714438928338
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,13 +217,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d61df84dc5803843867e0ebfd530138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftWallPoint: {fileID: 8678072713265054666}
+  rightWallPoint: {fileID: 8678072714438928338}
+  size: {x: 0.03, y: 0.27}
   radius: 1
   mask:
     serializedVersion: 2
     m_Bits: 256
-  leftWallPoint: {fileID: 8678072713265054666}
-  rightWallPoint: {fileID: 8678072714438928338}
-  size: {x: 0.03, y: 0.27}
 --- !u!1 &8678072714877897394
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +245,6 @@ GameObject:
   - component: {fileID: 7283751267121616973}
   - component: {fileID: 2369741595240430773}
   - component: {fileID: 8678072714877897358}
-  - component: {fileID: 6095906164413092914}
   - component: {fileID: 8678072714877897352}
   - component: {fileID: 2151314619607700207}
   - component: {fileID: 6055027253105648215}
@@ -181,6 +252,8 @@ GameObject:
   - component: {fileID: 8678072714877897395}
   - component: {fileID: 926686940864807827}
   - component: {fileID: 1243865457783090447}
+  - component: {fileID: 3539823685561337504}
+  - component: {fileID: 7315940256198026865}
   m_Layer: 9
   m_Name: Celeste
   m_TagString: Player
@@ -203,6 +276,7 @@ Transform:
   - {fileID: 8678072713644561289}
   - {fileID: 7328401308901965866}
   - {fileID: 7365460685057799818}
+  - {fileID: 4617411821392953024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,11 +306,9 @@ MonoBehaviour:
   effects: {fileID: 8678072714877897358}
   slide: {fileID: 7283751267121616973}
   animation: {fileID: 2369741595240430773}
-  cinemachine: {fileID: 0}
   illusion: {fileID: 7331442837230563641, guid: 0e451ab5108b41341877a22221e9a256,
     type: 3}
   death: {fileID: 6055027253105648215}
-  playerCamera: {fileID: 6095906164413092914}
   _Body: {fileID: 8678072714877897395}
   animationPlayer: {fileID: 926686940864807827}
 --- !u!114 &8678072714877897354
@@ -303,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c13993838842c4ba8766370869d661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.31
+  distance: 0.14
 --- !u!114 &8678072714877897359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,8 +404,6 @@ MonoBehaviour:
   dashState: 0
   savedVelocity: {x: 0, y: 0}
   savedDiraction: {x: 0, y: 0}
-  time: 0
-  endDashTime: 0.018
 --- !u!114 &8678072714877897356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,18 +480,6 @@ MonoBehaviour:
   particleDash: {fileID: 7328401308901965868}
   slideWall: {fileID: 7365460685057799821}
   time: 0.04
---- !u!114 &6095906164413092914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff334bea0c58624da5a9c1faef21b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8678072714877897352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +628,50 @@ CapsuleCollider2D:
   m_Offset: {x: 0.019096911, y: -0.005692959}
   m_Size: {x: 0.20698917, y: 0.3715353}
   m_Direction: 0
+--- !u!68 &3539823685561337504
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.060350016, y: 0.16689152}
+  - {x: 0.13033883, y: 0.09607458}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &7315940256198026865
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.062147215, y: -0.17376328}
+  - {x: 0.13385956, y: -0.093137145}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &8678072715251700047
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,11 +715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054e9291d56401845814a3a12b200e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloorPoint: {fileID: 8678072715251700047}
   radius: 0.1
   mask:
     serializedVersion: 2
     m_Bits: 256
-  FloorPoint: {fileID: 8678072715251700047}
 --- !u!1001 &2609949449788876881
 PrefabInstance:
   m_ObjectHideFlags: 0

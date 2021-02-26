@@ -3,5 +3,5 @@ using Player;
 
 public abstract class IPlayerObjects : MonoBehaviour
 {
-    [SerializeField] protected PlayerAplication playerAplication;
+    protected PlayerAplication playerAplication { get { return FindObjectOfType<PlayerAplication>(); } }
 }

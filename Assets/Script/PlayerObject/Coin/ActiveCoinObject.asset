@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884825b3876930bf088bf62086f19f25, type: 3}
   m_Name: ActiveCoinObject
   m_EditorClassIdentifier: 
-  SampleSceneCoin: []
+  SampleSceneCoin:
+  - Coin (3)
+  - Coin
   Level2Coin:
-  - {fileID: 0}
+  - Coin (5)

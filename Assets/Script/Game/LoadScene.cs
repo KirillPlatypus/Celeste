@@ -4,19 +4,41 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using PlayerObject.Coin;
+using Player;
 
 namespace Game
 {
     public class LoadScene  : MonoBehaviour
     {
-        [SerializeField] Transform Player;
+        PlayerAplication player { get { return FindObjectOfType<PlayerAplication>();}}
+
+        [SerializeField] GameObject DontDestroyPlayer;
+        [SerializeField] GameObject DontDestroyCamera;
 
         static int i = 0;
+        private void Awake() {
+            StartGame();
+        }
 
-        private void Awake()
-        {   
+        public void StartGame()
+        {              
             StartCoroutine(SetScene(new SceneDataAccessor(ModuleDB.sceneTable.SceneName, SceneManager.GetActiveScene().name)));
-            SetCoordinate(new CoordinateDataAccessor(Player));
+            SetCoordinate(new CoordinateDataAccessor(player.transform));
+
+            var playerArray = GameObject.FindGameObjectsWithTag("Player");
+            var CinemahineArray = GameObject.FindGameObjectsWithTag("Camera");
+
+            DestroyOnLoad(playerArray, DontDestroyPlayer);
+            DestroyOnLoad(CinemahineArray, DontDestroyCamera);
+        }
+
+        private void DestroyOnLoad(GameObject[] array, GameObject destroyOrNot)
+        {
+            if(array.Length > 1)
+                Destroy(destroyOrNot);
+
+            DontDestroyOnLoad(destroyOrNot);
+
         }
 
         [SerializeField] private ActiveCoins activeCoin;
@@ -52,10 +74,10 @@ namespace Game
                 }
                 i = 1;
             }
+            //switch active scene on SQLite DB
+
             yield return new WaitForSeconds(0.1f);
 
-            //switch active scene on SQLite DB
-            
             data.ReadData();
             
             if(ModuleDB.sceneTable.SceneName != SceneManager.GetActiveScene().name)
@@ -71,7 +93,7 @@ namespace Game
 
             data.ReadData();
 
-            Player.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);        
+            player.transform.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);        
 
         }
     }

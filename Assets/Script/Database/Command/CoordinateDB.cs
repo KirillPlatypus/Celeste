@@ -76,8 +76,8 @@ namespace DB
                             //result.GetFloat(result.GetOrdinal("CoordinateY"));
                             ModuleDB.coordinateTable.Id = (long)result["Id"];
                             ModuleDB.coordinateTable.Name = (string)result["Name"];
-                            ModuleDB.coordinateTable.CoordinateX = (float)result["CoordinateX"];
-                            ModuleDB.coordinateTable.CoordinateY = (float)result["CoordinateY"];
+                            ModuleDB.coordinateTable.CoordinateX = (double)result["CoordinateX"];
+                            ModuleDB.coordinateTable.CoordinateY = (double)result["CoordinateY"];
 
                             ModuleDB.sceneTable.Id = (long)result["Id"];
                             ModuleDB.sceneTable.SceneName = (string)result["SceneName"];

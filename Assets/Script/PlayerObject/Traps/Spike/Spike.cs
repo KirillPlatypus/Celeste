@@ -8,8 +8,6 @@ public class Spike : IPlayerObjects, ITrap
         if (collision.collider.tag == "Player")
         {
             playerAplication.playerModel.Death = true;
-
-
         }
     }
 }

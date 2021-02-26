@@ -511,6 +511,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 14, y: -12, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 375
+      m_TileSpriteIndex: 379
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 429
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: -11, z: 0}
     second:
       serializedVersion: 2
@@ -1333,8 +1343,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 2c012f32346e2c65cbbfc68c4aad1783, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 41eb883daa5bf7e9eb2cbcbb0c60bdc4, type: 2}
   - m_RefCount: 1
@@ -2202,8 +2212,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 3c510e5e5f4c302c0aae7e78155069f1, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: cf7ac3554ff3d66979dbf4182792ac36, type: 3}
   - m_RefCount: 1
@@ -2361,7 +2371,7 @@ Tilemap:
     m_Data: {fileID: -2217638906192892890, guid: 0cf748978a985561eb8f1c795d63b20e,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 54
+  - m_RefCount: 55
     m_Data:
       e00: 1
       e01: 0
@@ -3238,7 +3248,7 @@ Tilemap:
     m_Data: {r: -12.124786, g: -12.124786, b: -12.124786, a: -12.124786}
   - m_RefCount: 0
     m_Data: {r: -6.8391113, g: -6.8391113, b: -6.8391113, a: -6.8391113}
-  - m_RefCount: 54
+  - m_RefCount: 55
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3283,7 +3293,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3356,7 +3366,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &7200499247264648023
+--- !u!114 &4516530199578101070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

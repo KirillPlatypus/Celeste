@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 using System.Threading;
 
 
-public class CheckPoint : ICheckAnymore
+public class CheckPoint : IPlayerObjects
 {
     [SerializeField] Scene LastScene;
-    [SerializeField] Transform player;
 
     [SerializeField] internal bool OnCheckpoint;
 
+    [SerializeField] private LayerMask mask;
+
     private IDataAccessor saveCoordinate;
-    private SceneDataAccessor saveScene;    
 
 
     private void Start() 
     {
-        saveCoordinate = new CoordinateDataAccessor(player); 
-        saveScene = new SceneDataAccessor();
+        saveCoordinate = new CoordinateDataAccessor(playerAplication.transform); 
     }
 
     public void Update()
@@ -38,7 +37,7 @@ public class CheckPoint : ICheckAnymore
         OnCheckpoint = Physics2D.OverlapBox(transform.position, transform.localScale, 1f, mask);
     }
 
-    public override void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, transform.localScale);

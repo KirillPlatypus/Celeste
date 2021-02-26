@@ -38,49 +38,51 @@
   <ItemGroup>
      <Compile Include="Assets\Script\PlayerObject\CheckPoint\CheckPoint.cs" />
      <Compile Include="Assets\Script\PlayerObject\Traps\Spike\Spike.cs" />
+     <Compile Include="Assets\Script\Player\Controller\EffectsPlayerController.cs" />
+     <Compile Include="Assets\Script\Database\Table\CoordinateTable.cs" />
+     <Compile Include="Assets\Script\Player\Controller\Jump\JumpController.cs" />
+     <Compile Include="Assets\Script\Game\DataAccess\CoordinateDataAccessor.cs" />
+     <Compile Include="Assets\Script\Player\View\PlayerView.cs" />
+     <Compile Include="Assets\Script\Player\Controller\Move\IMovement.cs" />
+     <Compile Include="Assets\Script\PlayerObject\IPlayerObjects.cs" />
+     <Compile Include="Assets\Script\Player\CheckAnymore\Wall\CheckWall.cs" />
+     <Compile Include="Assets\Script\Camera\ShakeCamera.cs" />
+     <Compile Include="Assets\Script\Player\Controller\Move\WallMovementController.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Coin\ActiveCoins.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Platform\Platform.cs" />
+     <Compile Include="Assets\Script\Player\PlayerElement.cs" />
+     <Compile Include="Assets\Script\Player\Controller\Jump\IJump.cs" />
+     <Compile Include="Assets\Script\Player\Controller\DashController.cs" />
+     <Compile Include="Assets\Script\Game\LoadScene.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Door.cs" />
+     <Compile Include="Assets\Script\PlayerObject\BackGround\Parallax.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Coin\Coin.cs" />
+     <Compile Include="Assets\Script\Player\Controller\WallController.cs" />
+     <Compile Include="Assets\Script\Player\Controller\Move\MovementController.cs" />
+     <Compile Include="Assets\Script\Player\Controller\ResolutionDirectionController.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Spring\ISpring.cs" />
      <Compile Include="Assets\Script\Database\Command\CoordinateDB.cs" />
      <Compile Include="Assets\Script\Database\ConnectDB.cs" />
      <Compile Include="Assets\Script\Player\CheckAnymore\CheckFloor.cs" />
      <Compile Include="Assets\Script\Game\DataAccess\SceneDataAccessor.cs" />
-     <Compile Include="Assets\Script\Player\Controller\EffectsPlayerController.cs" />
-     <Compile Include="Assets\Script\Database\Table\CoordinateTable.cs" />
-     <Compile Include="Assets\Script\Player\Controller\Jump\JumpController.cs" />
+     <Compile Include="Assets\Script\Database\Module\ModuleDB.cs" />
      <Compile Include="Assets\Script\Player\Controller\Move\Movement.cs" />
      <Compile Include="Assets\Script\Player\Controller\Jump\JumpWallController.cs" />
      <Compile Include="Assets\Script\Player\Controller\DeathController.cs" />
-     <Compile Include="Assets\Script\Game\DataAccess\CoordinateDataAccessor.cs" />
-     <Compile Include="Assets\Script\Player\View\PlayerView.cs" />
      <Compile Include="Assets\Script\PlayerObject\Traps\ITrap.cs" />
-     <Compile Include="Assets\Script\Player\Controller\Move\IMovement.cs" />
-     <Compile Include="Assets\Script\PlayerObject\IPlayerObjects.cs" />
-     <Compile Include="Assets\Script\Player\CheckAnymore\Wall\CheckWall.cs" />
-     <Compile Include="Assets\Script\Player\Controller\CameraPlayer.cs" />
      <Compile Include="Assets\Script\Player\Controller\AnimationController.cs" />
-     <Compile Include="Assets\Script\Player\Controller\Move\WallMovementController.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Platform\Platform.cs" />
      <Compile Include="Assets\Script\Game\DataAccess\IDataAccessor.cs" />
-     <Compile Include="Assets\Script\Player\PlayerElement.cs" />
-     <Compile Include="Assets\Script\Player\Controller\Jump\IJump.cs" />
      <Compile Include="Assets\Script\Player\Controller\IllusionPlayer.cs" />
      <Compile Include="Assets\Script\PlayerObject\Spring\Spring.cs" />
      <Compile Include="Assets\Script\Player\PlayerAplication.cs" />
-     <Compile Include="Assets\Script\Player\Controller\DashController.cs" />
-     <Compile Include="Assets\Script\Player\CheckAnymore\ICheckAnymore.cs" />
-     <Compile Include="Assets\Script\Game\LoadScene.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Door.cs" />
-     <Compile Include="Assets\Script\PlayerObject\BackGround\Parallax.cs" />
      <Compile Include="Assets\Script\Player\Model\PlayerModel.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Coin\Coin.cs" />
-     <Compile Include="Assets\Script\Player\Controller\WallController.cs" />
      <Compile Include="Assets\Script\Database\Table\SceneTable.cs" />
-     <Compile Include="Assets\Script\Player\Controller\Move\MovementController.cs" />
      <Compile Include="Assets\Script\Player\Controller\SlideController.cs" />
-     <Compile Include="Assets\Script\Player\Controller\ResolutionDirectionController.cs" />
      <Compile Include="Assets\Script\PlayerObject\Coin\CoinCounter.cs" />
      <Compile Include="Assets\Script\PlayerObject\CheckScene.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Spring\ISpring.cs" />
-     <Compile Include="Assets\Script\Database\Module\ModuleDB.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Coin\ActiveCoins.cs" />
+     <Compile Include="Assets\Script\PlayerObject\IllusionBlocks\IIllusion.cs" />
+     <Compile Include="Assets\Script\PlayerObject\IllusionBlocks\GroupIllusionBlock.cs" />
+     <Compile Include="Assets\Script\PlayerObject\IllusionBlocks\IllusionBlock.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/kenadi/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -660,11 +662,17 @@
     <Reference Include="Unity.2D.PixelPerfect">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Editor.dll</HintPath>
@@ -681,6 +689,9 @@
     <Reference Include="Unity.TextMeshPro">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.IK.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
@@ -693,8 +704,8 @@
     <Reference Include="Unity.2D.Path.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -702,8 +713,14 @@
     <Reference Include="Unity.Rider.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
@@ -714,11 +731,17 @@
     <Reference Include="XiaomiSupport">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/XiaomiSupport.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Cinemachine">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
@@ -728,6 +751,12 @@
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -743,6 +772,9 @@
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+        <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
         <HintPath>/home/kenadi/UnityProject/Celeste/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>

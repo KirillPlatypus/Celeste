@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 namespace PlayerObject
 {
-    public class CheckScene : ICheckAnymore
+    public class CheckScene : MonoBehaviour
     {
         [SerializeField] private LoadScene load;
         [SerializeField] private string NextSceneName;
 
         [SerializeField] private bool OnCheckScene;
+
+        [SerializeField] private LayerMask mask;
+
         private int i;
+        
         private void Start() 
         {
             i = 0;
@@ -28,7 +32,7 @@ namespace PlayerObject
             }
         }
 
-        public override void OnDrawGizmos()
+        public void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawCube(transform.position, transform.localScale);

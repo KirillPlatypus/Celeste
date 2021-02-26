@@ -3,11 +3,14 @@
 namespace Player.CheckAnymore
 {
 
-    internal class CheckWall : ICheckAnymore
+    internal class CheckWall : PlayerElement
     {
         [SerializeField] private GameObject leftWallPoint;
         [SerializeField] private GameObject rightWallPoint;
+
         [SerializeField] private Vector2 size;
+        [SerializeField] private float radius;
+        [SerializeField] private LayerMask mask;
 
         private void Update()
         {
@@ -17,7 +20,7 @@ namespace Player.CheckAnymore
             aplication.playerModel.OnRightWall = Physics2D.OverlapBox(rightWallPoint.transform.position, size, radius, mask);
         }
 
-        public override void OnDrawGizmos()
+        public void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
 

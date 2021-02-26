@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -13,28 +14,24 @@ namespace Player.Controller
         [SerializeField] private Vector2 savedVelocity;
         [SerializeField] private Vector2 savedDiraction;
 
-        [SerializeField] private float time = 0;
-        [SerializeField] private float endDashTime;
-
-
         public void SetDash()
         {
-            if (aplication.playerModel.OnFloor && time == 0)
+            if (aplication.playerModel.OnFloor)
             {
                 aplication.playerModel.DashingTime = true;
             }
         }
 
 
-        public void Dash(float horizontalRaw, float verticalRaw)
+        public IEnumerator Dash(float horizontalRaw, float verticalRaw)
         {
             switch (dashState)
             {
                 case DashState.StartDashing:
 
-                    if (Input.GetKeyDown(keyDash) || (time < endDashTime && time != 0))
+                    if (Input.GetKeyDown(KeyCode.Z) && !aplication.playerModel.Dash)
                     {
-                        if (time <= 0.0001f)
+                        if (!aplication.playerModel.Dash)
                         {
                             savedVelocity.x = aplication._Body.velocity.x;
                             savedDiraction = new Vector2(horizontalRaw, verticalRaw);
@@ -61,16 +58,14 @@ namespace Player.Controller
                             aplication._Body.velocity = Vector2.right * new Vector2((float)aplication.playerModel.dashSpeed, 0);
 
                         }
-                        time += Time.fixedDeltaTime * 0.1f;
-                    }
-                    else if (time >= endDashTime)
-                    {
+                    
+                        yield return new WaitForSeconds(0.3f);
+
                         dashState = DashState.EndDashing;
                     }
                     break;
 
                 case DashState.EndDashing:
-                    time = 0;
 
                     aplication._Body.velocity = savedVelocity;
 

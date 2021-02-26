@@ -7,7 +7,9 @@ namespace Player.View
 {
     public class PlayerView : PlayerElement
     {
-        [SerializeField] private float distance;
+        public event Action<bool> OnDashingStateChange;
+
+        public float distance;
 
         private RaycastHit2D hit;
 
@@ -84,7 +86,7 @@ namespace Player.View
         }
 
 
-        private void Jump()
+        public void Jump()
         {
             if (!aplication.wall.DragOnWall() && !aplication.playerModel.JumpWall && !aplication.playerModel.Dash)
             {
@@ -103,7 +105,12 @@ namespace Player.View
 
             if (aplication.playerModel.DashingTime)
             {
-                aplication.dash.Dash(aplication.playerModel.horizontalRaw, aplication.playerModel.verticalRaw);
+                StartCoroutine(aplication.dash.Dash(aplication.playerModel.horizontalRaw, aplication.playerModel.verticalRaw));
+                
+                if (OnDashingStateChange != null)
+                {
+                    OnDashingStateChange(aplication.playerModel.Dash);
+                }
             }
 
         }
@@ -141,7 +148,7 @@ namespace Player.View
             }
 
         }
-        public void StopWallHangJump()
+        private void StopWallHangJump()
         {
             aplication.playerModel.JumpHangWall = false;
         }
@@ -178,7 +185,7 @@ namespace Player.View
 
             }
         }
-        public void StopWallJump()
+        private void StopWallJump()
         {
             aplication.playerModel.JumpWall = false;
         }
@@ -186,8 +193,14 @@ namespace Player.View
         public void Death()
         {
             if (aplication.playerModel.Death)
-                aplication.death.Death();
+                StartCoroutine(aplication.death.Death());
 
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+
+            Gizmos.DrawRay(transform.position, new Vector2(distance, 0));
         }
     }
 }

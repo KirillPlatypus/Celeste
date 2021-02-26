@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Player.Controller
@@ -6,67 +7,45 @@ namespace Player.Controller
     public class DeathController : PlayerElement
     {
         [SerializeField] private DeathState deathStation;
-        private float time;
-        public DeathController()
+        public IEnumerator Death()
         {
-
-        }
-        public void Death()
-        {
-            time += Time.deltaTime;
-            
             switch (deathStation)
             {
                 case DeathState.StartDeath:
-                    if (time < 0.5f)
-                    {
+                    
                         aplication.collider.enabled = false;
 
                         transform.Translate(new Vector3(0.07f, 0.05f, 0));
 
                         aplication._Body.bodyType = RigidbodyType2D.Static;
-                    }
-                    else
-                    {
-                        time = 0;
-                        deathStation = DeathState.AnimationState;
-                    }
-                    break;
-
-                case DeathState.AnimationState:
-                    if (time < 0.3f)
-                    { 
-                            
-                    }
-                    else
-                    {
-                        time = 0;
+                    
+                        yield return new WaitForSeconds(0.5f);
                         deathStation = DeathState.LoadPlayer;
-                    }
+                    
                     break;
 
                 case DeathState.LoadPlayer:
 
-                    aplication.playerModel.Death = false;
+                    yield return new WaitForSeconds(0.3f);
 
-                    transform.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);
+                    deathStation = DeathState.StartDeath;
 
                     aplication.collider.enabled = true;
 
                     aplication._Body.bodyType = RigidbodyType2D.Dynamic;
-                    deathStation = DeathState.StartDeath;
+
+                    transform.position = new Vector2((float)ModuleDB.coordinateTable.CoordinateX, (float)ModuleDB.coordinateTable.CoordinateY);
+
+                    aplication.playerModel.Death = false;
 
                     break;
-
             }
         }
 
         private enum DeathState
         {
             StartDeath,
-            AnimationState,
             LoadPlayer,
         }
-
     }
 }

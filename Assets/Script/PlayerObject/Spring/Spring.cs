@@ -10,7 +10,7 @@ namespace PlayerObject.Spring
 
         [SerializeField] private new Animator animation;
 
-        private void Start()
+        private void Awake()
         {
 
             RebountPower = transform.up * power;
