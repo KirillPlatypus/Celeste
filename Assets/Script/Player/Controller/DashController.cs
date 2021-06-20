@@ -9,7 +9,7 @@ namespace Player.Controller
     {
         [SerializeField] private KeyCode keyDash;
 
-        [SerializeField] private DashState dashState;
+        [SerializeField] public DashState dashState;
 
         [SerializeField] private Vector2 savedVelocity;
         [SerializeField] private Vector2 savedDiraction;
@@ -23,60 +23,51 @@ namespace Player.Controller
         }
 
 
-        public IEnumerator Dash(float horizontalRaw, float verticalRaw)
+        public IEnumerator Dash(Vector2 diraction)
         {
-            switch (dashState)
+
+            if (!aplication.playerModel.Dash)
             {
-                case DashState.StartDashing:
+                dashState = DashState.ActionDash;
 
-                    if (Input.GetKeyDown(KeyCode.Z) && !aplication.playerModel.Dash)
-                    {
-                        if (!aplication.playerModel.Dash)
-                        {
-                            savedVelocity.x = aplication._Body.velocity.x;
-                            savedDiraction = new Vector2(horizontalRaw, verticalRaw);
-                            aplication._Body.velocity = Vector2.zero;
-                        }
+                    savedVelocity.x = aplication._Body.velocity.x;
+                    savedDiraction = diraction;
+                    aplication._Body.velocity = Vector2.zero;
 
 
 
-                        aplication.playerModel.Dash = true;
-                        aplication._Body.gravityScale = 0;
 
-                        if (savedDiraction != Vector2.zero)
-                        {
+                aplication.playerModel.Dash = true;
+                aplication._Body.gravityScale = 0;
 
+                if (savedDiraction != Vector2.zero)
+                {
 
-                            aplication._Body.velocity = savedDiraction.normalized *
-                              new Vector2((float)aplication.playerModel.dashSpeed, (float)aplication.playerModel.dashSpeed);
+                    aplication._Body.velocity = savedDiraction.normalized *
+                      new Vector2((float)aplication.playerModel.dashSpeed, (float)aplication.playerModel.dashSpeed);
 
+                }
+                else
+                {
 
-                        }
-                        else
-                        {
+                    aplication._Body.velocity = Vector2.right * new Vector2((float)aplication.playerModel.dashSpeed, 0);
 
-                            aplication._Body.velocity = Vector2.right * new Vector2((float)aplication.playerModel.dashSpeed, 0);
+                }
 
-                        }
-                    
-                        yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.3f);
 
-                        dashState = DashState.EndDashing;
-                    }
-                    break;
-
-                case DashState.EndDashing:
-
-                    aplication._Body.velocity = savedVelocity;
-
-                    dashState = DashState.StartDashing;
-
-                    aplication.playerModel.Dash = false;
-
-                    aplication._Body.gravityScale = 1;
-
-                    aplication.playerModel.DashingTime = false;
-                    break;
+                dashState = DashState.EndDashing;
+            
+            
+                aplication._Body.velocity = savedVelocity;
+    
+                aplication.playerModel.Dash = false;
+    
+                aplication._Body.gravityScale = 1;
+    
+                aplication.playerModel.DashingTime = false;
+    
+                dashState = DashState.StartDashing;
 
             }
         }
@@ -85,6 +76,7 @@ namespace Player.Controller
     public enum DashState
     {
         StartDashing,
+        ActionDash,
         EndDashing,
     }
 }

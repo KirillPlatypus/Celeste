@@ -14,19 +14,21 @@ namespace CameraScript
 
         private const float amplitude = 1.5f;
 
-        private void Awake()
+        private void Start()
         {
             cameraShake = cinemachine.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
         }
 
         private void OnEnable() 
         {
-            _player.OnDashingStateChange += CameraShaking;
+            if(_player != null)
+                _player.OnDashingStateChange += CameraShaking;
         }
         
         private void OnDisable() 
         {
-            _player.OnDashingStateChange -= CameraShaking;
+            if(_player != null)
+                _player.OnDashingStateChange -= CameraShaking;
         }
 
         private void CameraShaking(bool IsDoing)

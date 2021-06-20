@@ -43,12 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81274a5a75c79590956ef384ef37b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  LastScene:
+    m_Handle: 0
+  OnCheckpoint: 0
   mask:
     serializedVersion: 2
     m_Bits: 512
-  saveCoordinate: {fileID: 2575198579371147038, guid: ebe5ef796889a6d0cb8ce7a1eae47a0a,
-    type: 3}
-  saveScene: {fileID: 2575198579371147037, guid: ebe5ef796889a6d0cb8ce7a1eae47a0a,
-    type: 3}
-  OnCheckpoint: 0
+  player: {fileID: 8678072714877897397, guid: cbd90c34defddb547b5d5bb84b42043f, type: 3}
+  checkPoint: {fileID: 0}

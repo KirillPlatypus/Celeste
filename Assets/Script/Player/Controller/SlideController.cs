@@ -4,9 +4,9 @@ namespace Player.Controller
 {
     public class SlideController : PlayerElement
     {
-        public void PlayerSlide()
+        public void PlayerSlide(float move)
         {
-            if ((aplication.playerModel.OnRightWall && aplication.playerModel.horizontalRaw != 0))
+            if ((aplication.playerModel.OnRightWall && move != 0))
             {
                 aplication._Body.velocity = Vector2.zero;
                 aplication._Body.gravityScale = 0.1f;

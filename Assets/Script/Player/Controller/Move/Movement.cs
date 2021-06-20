@@ -3,12 +3,8 @@ namespace Player.Controller.Move
 {
     public class Movement : PlayerElement
     {
-        internal Vector2 InputMove;
-
-        public void Idle(IMovement movement)
+        public void Idle(IMovement movement, Vector2 InputMove)
         {
-            InputMove = new Vector2(aplication.playerModel.horizontal, aplication.playerModel.vertical);
-
             movement.SetMovement(InputMove);
         }
     }

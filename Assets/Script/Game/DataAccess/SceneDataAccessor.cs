@@ -1,6 +1,7 @@
 using DB;
 using UnityEngine;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Game
@@ -11,7 +12,7 @@ namespace Game
 
         public override Command command {get; set;}
 
-        Transform Player;
+        Vector2 Player;
         static string Last, Active;
 
         public SceneDataAccessor(string LastScene, string ActiveScene)
@@ -24,17 +25,17 @@ namespace Game
 
         public SceneDataAccessor( ) : base() {}
 
-        public override void UpdateData(object varRowOfRequest)
+        public override async Task UpdateData(object varRowOfRequest)
         {
             command = (long)varRowOfRequest == 1 
                     ? new SceneCommand(Player, Active)
                     : new SceneCommand(Player, Last);  
             
-            SceneCommand.UpdateScene((long)varRowOfRequest);
+            await SceneCommand.UpdateScene((long)varRowOfRequest);
         }
-        public override void ReadData()
+        public override async void ReadData()
         {
-            SceneCommand.ReadScene();
+            await SceneCommand.ReadScene();
         }
 
     }

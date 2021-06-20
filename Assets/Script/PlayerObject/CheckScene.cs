@@ -28,7 +28,7 @@ namespace PlayerObject
             if (OnCheckScene && i == 0)
             {
                 i = 1;
-                StartCoroutine(load.Loading(NextSceneName));
+                load.Loading(NextSceneName);
             }
         }
 

@@ -6,7 +6,7 @@ namespace Player.Controller.Move
     {
         public void SetMovement(Vector2 move)
         {
-            aplication._Body.velocity = new Vector2(aplication._Body.velocity.x, move.y * aplication.playerModel.speedY);
+            aplication._Body.velocity = new Vector2(1, move.y * aplication.playerModel.speedY);
         }
     }
 }

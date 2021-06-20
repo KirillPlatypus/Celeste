@@ -2,6 +2,8 @@
 using Player.Controller.Move;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Player.Controller;
+using UI.Button;
 
 namespace Player.View
 {
@@ -13,23 +15,23 @@ namespace Player.View
 
         private RaycastHit2D hit;
 
-        private double powerWallJump;
+        [SerializeField] private Joystick joystick;
 
         private void Update()
         {
             aplication.dash.SetDash();
 
-            aplication.playerModel.horizontal = Input.GetAxis("Horizontal");
-            aplication.playerModel.vertical = Input.GetAxis("Vertical");
+            aplication.playerModel.horizontal = joystick.Horizontal;
+            aplication.playerModel.vertical = joystick.Vertical;
 
-            aplication.playerModel.horizontalRaw = Input.GetAxisRaw("Horizontal");
-            aplication.playerModel.verticalRaw = Input.GetAxisRaw("Vertical");
+            aplication.playerModel.horizontalRaw = joystick.Horizontal;
+            aplication.playerModel.verticalRaw = joystick.Vertical;
 
             hit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x, 0), distance);
 
             #region Movement
 
-            Idle();
+            Idle(new Vector2(aplication.playerModel.horizontal, aplication.playerModel.vertical));
 
             #endregion Movement
 
@@ -62,10 +64,9 @@ namespace Player.View
 
             #region Diraction
 
-            if (!aplication.wall.DragOnWall() && !aplication.playerModel.JumpHangWall && !aplication.playerModel.JumpWall)
+            if (!aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && !aplication.playerModel.JumpHangWall && !aplication.playerModel.JumpWall)
             {
-
-                aplication.direction.diractionPlayer(aplication.playerModel.horizontalRaw, transform.localScale);
+                aplication.direction.diractionPlayer(aplication._Body.velocity.x, transform.localScale);
 
             }
 
@@ -74,11 +75,11 @@ namespace Player.View
         }
 
 
-        private void Idle()
+        private void Idle(Vector2 InputMove)
         {
-            if (!aplication.wall.DragOnWall() && !aplication.playerModel.JumpWall && !aplication.playerModel.Dash)
+            if (!aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && !aplication.playerModel.JumpWall && !aplication.playerModel.Dash)
             {
-                aplication.movement.Idle(new MovementController());
+                aplication.movement.Idle(new MovementController(), InputMove);
 
                 aplication.playerModel.Idle = aplication._Body.velocity.x != 0 ? true : false;
 
@@ -88,12 +89,12 @@ namespace Player.View
 
         public void Jump()
         {
-            if (!aplication.wall.DragOnWall() && !aplication.playerModel.JumpWall && !aplication.playerModel.Dash)
+            if (!aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && !aplication.playerModel.JumpWall && !aplication.playerModel.Dash)
             {
-                aplication.jump.Jump(new Vector2(0f, aplication.playerModel.standartJumpPower), 0f);
-                aplication.jump.SetGravity();
+                aplication.jump.Jump(new Vector2(aplication._Body.velocity.x, aplication.playerModel.standartJumpPower), 0f, HoldButton.GetButtonStatusDown(ButtonCode.JumpButton));
+                aplication.jump.SetGravity(HoldButton.GetButtonStatus(ButtonCode.JumpButton));
 
-                aplication.playerModel.Jump = aplication._Body.velocity.y != 0 ? true : false;
+                aplication.playerModel.Jump = aplication._Body.velocity.y  != 0 && !aplication.playerModel.OnFloor ? true : false;
 
             }
 
@@ -105,22 +106,22 @@ namespace Player.View
 
             if (aplication.playerModel.DashingTime)
             {
-                StartCoroutine(aplication.dash.Dash(aplication.playerModel.horizontalRaw, aplication.playerModel.verticalRaw));
+                if(HoldButton.GetButtonStatus(ButtonCode.DashButton))
+                    StartCoroutine(aplication.dash.Dash(new Vector2(aplication.playerModel.horizontalRaw, aplication.playerModel.verticalRaw)));
                 
-                if (OnDashingStateChange != null)
-                {
-                    OnDashingStateChange(aplication.playerModel.Dash);
-                }
             }
+            if (OnDashingStateChange != null)
+                OnDashingStateChange(aplication.dash.dashState != DashState.StartDashing);
+            
 
         }
 
 
         private void IdleWall()
         {
-            if (aplication.wall.DragOnWall() && !aplication.playerModel.Dash)
+            if (aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && !aplication.playerModel.Dash)
             {
-                aplication.movement.Idle(new WallMovementController());
+                aplication.movement.Idle(new WallMovementController(), new Vector2(aplication.playerModel.horizontal, aplication.playerModel.verticalRaw));
                 aplication.playerModel.IdleWall = true;
             }
             else
@@ -130,9 +131,11 @@ namespace Player.View
         }
 
 
+        private double powerWallJump;
+
         private void WallHangJump()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && aplication.wall.DragOnWall() && !aplication.playerModel.Dash)
+            if (HoldButton.GetButtonStatusDown(ButtonCode.JumpButton) && aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && !aplication.playerModel.Dash)
             {
 
                 aplication.playerModel.JumpHangWall = true;
@@ -144,7 +147,7 @@ namespace Player.View
             {
 
                 aplication.jumpWall.Jump(new Vector2((float)aplication.playerModel.powerWallHangJump * 1.8f, (float)Math.Abs(aplication.playerModel.powerWallHangJump)),
-                                             aplication.playerModel.horizontalRaw);
+                                             aplication.playerModel.horizontalRaw, false);
             }
 
         }
@@ -155,12 +158,11 @@ namespace Player.View
 
         private void WallJuming()
         {
-            if (!aplication.playerModel.OnFloor && !aplication.wall.DragOnWall() && aplication.playerModel.OnRightWall && !aplication.playerModel.Dash)
+            if (!aplication.playerModel.OnFloor && !aplication.wall.DragOnWall(OnceButton.GetButtonStatus()) && aplication.playerModel.OnRightWall && !aplication.playerModel.Dash)
             {
-                aplication.slide.PlayerSlide();
-                if (Input.GetKeyDown(KeyCode.Space))
+                aplication.slide.PlayerSlide(aplication.playerModel.horizontal);
+                if (HoldButton.GetButtonStatusDown(ButtonCode.JumpButton))
                 {
-                    aplication.direction.diractionPlayer(-transform.localScale.x, transform.localScale);
 
                     powerWallJump = aplication.playerModel.SlideWall ? Math.Sqrt(aplication.playerModel.powerWallJump) : aplication.playerModel.powerWallJump;
 
@@ -168,6 +170,7 @@ namespace Player.View
 
                     Invoke(nameof(StopWallJump), aplication.playerModel.timeWallJump);
 
+                    aplication.direction.diractionPlayer(-transform.localScale.x, transform.localScale);
                 }
             }
             else
@@ -181,7 +184,7 @@ namespace Player.View
                 var diraction = aplication.playerModel.SlideWall ? -aplication.playerModel.horizontalRaw : -hit.normal.x;
 
 
-                aplication.jumpWall.Jump(new Vector2((float)powerWallJump, (float)Math.Sqrt(powerWallJump)), diraction);
+                aplication.jumpWall.Jump(new Vector2((float)powerWallJump, (float)Math.Sqrt(powerWallJump)), diraction, false);
 
             }
         }

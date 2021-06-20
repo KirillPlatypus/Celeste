@@ -5,7 +5,10 @@ namespace PlayerObject.Spring
     public class Spring : IPlayerObjects, ISpring
     {
         public bool OnLocalSpring { get; set; }
+
+        [SerializeField] private bool onSpring;
         [SerializeField] [Range(1f, 20f)] float power;
+        
         public Vector2 RebountPower { get; set; }
 
         [SerializeField] private new Animator animation;
@@ -16,8 +19,10 @@ namespace PlayerObject.Spring
             RebountPower = transform.up * power;
 
         }
-        public void Update()
+        void Update()
         {
+             
+
             Debug.DrawRay(transform.position, transform.up);
 
             if (OnLocalSpring)
@@ -34,6 +39,7 @@ namespace PlayerObject.Spring
             if (collision.collider.tag == "Player")
             {
                 playerAplication.playerModel.onSpring = true;
+                onSpring = true;
                 OnLocalSpring = true;
 
             }
@@ -44,6 +50,7 @@ namespace PlayerObject.Spring
             {
                 playerAplication.playerModel.onSpring = false;
                 OnLocalSpring = false;
+                onSpring = false;
             }
         }
 

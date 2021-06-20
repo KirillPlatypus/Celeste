@@ -8,6 +8,5 @@ namespace PlayerObject.Spring
 
         bool OnLocalSpring { get; set; }
         void Rebount();
-        void Update();
     }
 }

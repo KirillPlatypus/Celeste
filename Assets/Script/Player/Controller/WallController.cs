@@ -4,11 +4,9 @@ namespace Player.Controller
 {
     public class WallController : PlayerElement
     {
-        [SerializeField] private KeyCode keyHanging;
-
-        public bool DragOnWall()
+        public bool DragOnWall(bool button )
         {
-            if (aplication.playerModel.OnWall && Input.GetKey(keyHanging))
+            if (aplication.playerModel.OnWall && button)
             {
                 aplication._Body.gravityScale = 0;
 

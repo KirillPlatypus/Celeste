@@ -7,7 +7,7 @@ namespace Player.Controller.Jump
     {
         [SerializeField] private float distance;
 
-        public void Jump(Vector2 power, float diraction)
+        public void Jump(Vector2 power, float diraction, bool buttonDown)
         {
 
             aplication._Body.velocity = new Vector2(power.x * diraction, power.y);

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Threading;
 using PlayerObject.Coin;
 using Player;
+using System.IO;
+using DB;
 
 namespace Game
 {
@@ -12,33 +16,67 @@ namespace Game
     {
         PlayerAplication player { get { return FindObjectOfType<PlayerAplication>();}}
 
-        [SerializeField] GameObject DontDestroyPlayer;
-        [SerializeField] GameObject DontDestroyCamera;
+        [SerializeField] GameObject[] DontDestroyObjects;
+        List<GameObject[]> ObjectArray = new List<GameObject[]>();
 
-        static int i = 0;
-        private void Awake() {
-            StartGame();
+        static bool startingLoad = true;
+        static bool startingMenu = true;
+
+        private void Awake() 
+        {
+            ExecutionContext.IsFlowSuppressed();
+            if(SceneManager.GetActiveScene().name != "Menu")
+            {
+                if(startingMenu)
+                {
+                    var strMenu = "Menu";
+
+                    Loading(strMenu);
+                    startingMenu = false;
+                }
+                else
+                {
+                    SceneCommand.ReadScene();
+                    LoadLastScene(new SceneDataAccessor(ModuleDB.sceneTable.SceneName, SceneManager.GetActiveScene().name));
+                    
+                    SetLastScene(new SceneDataAccessor(ModuleDB.sceneTable.SceneName, SceneManager.GetActiveScene().name));
+                    
+                    SetDontDestroyObject();
+
+                    if(player != null)
+                        SetCoordinate(new CoordinateDataAccessor(player.transform.position));
+
+                }
+            }
+            else
+            {
+                startingMenu = false;
+            }
         }
+        private void SetDontDestroyObject()
+        {
+            if(GameObject.FindGameObjectsWithTag("Player") != null)
+            {
+                ObjectArray.Add(GameObject.FindGameObjectsWithTag("Player"));
+                ObjectArray.Add(GameObject.FindGameObjectsWithTag("Camera"));
+                ObjectArray.Add(GameObject.FindGameObjectsWithTag("Canvas"));
+            }
 
-        public void StartGame()
-        {              
-            StartCoroutine(SetScene(new SceneDataAccessor(ModuleDB.sceneTable.SceneName, SceneManager.GetActiveScene().name)));
-            SetCoordinate(new CoordinateDataAccessor(player.transform));
-
-            var playerArray = GameObject.FindGameObjectsWithTag("Player");
-            var CinemahineArray = GameObject.FindGameObjectsWithTag("Camera");
-
-            DestroyOnLoad(playerArray, DontDestroyPlayer);
-            DestroyOnLoad(CinemahineArray, DontDestroyCamera);
+            for (int i = 0; i < DontDestroyObjects.Length; i++)
+            {
+                DestroyOnLoad(ObjectArray[i], DontDestroyObjects[i]);
+            }
         }
 
         private void DestroyOnLoad(GameObject[] array, GameObject destroyOrNot)
         {
-            if(array.Length > 1)
-                Destroy(destroyOrNot);
+            if(array.Length != 0)
+            {
+                if(array.Length > 1)
+                    DestroyImmediate(destroyOrNot);
 
-            DontDestroyOnLoad(destroyOrNot);
-
+                DontDestroyOnLoad(destroyOrNot);
+            }
         }
 
         [SerializeField] private ActiveCoins activeCoin;
@@ -55,15 +93,18 @@ namespace Game
             }
         }
 
-        public IEnumerator Loading(string sceneName)
+        public void Loading(string sceneName)
         {
-            yield return new WaitForSeconds(1f);
             SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/MainScene/{sceneName}.unity"));
         }
-
-        private IEnumerator SetScene(IDataAccessor data)
+        public void ButtonStartGame()
         {
-            if(i == 0)
+            LoadLastScene(new SceneDataAccessor(ModuleDB.sceneTable.SceneName, SceneManager.GetActiveScene().name));
+        }
+
+        private void LoadLastScene(IDataAccessor data)
+        {
+            if(startingLoad)
             {
                 //load last scene (only when the game is starting ) 
                 data.ReadData();
@@ -72,18 +113,22 @@ namespace Game
                 {                
                     SceneManager.LoadSceneAsync((int)ModuleDB.sceneTable.buildIndex);
                 }
-                i = 1;
+                startingLoad = false;
             }
+            if(SceneManager.GetActiveScene().name == "Menu")
+                startingLoad = true;
+        }
+
+        private void SetLastScene(IDataAccessor data)
+        {
             //switch active scene on SQLite DB
-
-            yield return new WaitForSeconds(0.1f);
-
             data.ReadData();
             
-            if(ModuleDB.sceneTable.SceneName != SceneManager.GetActiveScene().name)
+            if(ModuleDB.sceneTable.SceneName != SceneManager.GetActiveScene().name && 
+                SceneManager.GetActiveScene().name != "Menu")
             {                
                 var thirdStartTask = Task.Run(() => data.UpdateData((long)0));
-                var fourthStartTask = thirdStartTask.ContinueWith(task => data.UpdateData((long)1));
+                var fourthStartTask = thirdStartTask.ContinueWith( (g) => data.UpdateData((long)1));
             }
         }
 

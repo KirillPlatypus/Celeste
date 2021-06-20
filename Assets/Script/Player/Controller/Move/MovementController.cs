@@ -6,10 +6,7 @@ namespace Player.Controller.Move
     {
         public void SetMovement(Vector2 move)
         {
-            if (!aplication.wall.DragOnWall())
-            {
-                aplication._Body.velocity = new Vector2(move.x * aplication.playerModel.speedX, aplication._Body.velocity.y);
-            }
+            aplication._Body.velocity = new Vector2(move.x * aplication.playerModel.speedX, aplication._Body.velocity.y);
         }
     }
 }

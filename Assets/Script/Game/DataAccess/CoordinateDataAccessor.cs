@@ -13,28 +13,26 @@ namespace Game
 
         public override Command command {get; set;}
 
-        private Transform Player;
+        private Vector2 Player;
 
         public CoordinateDataAccessor() : base() {}
 
-        public CoordinateDataAccessor(Transform _player)
+        public CoordinateDataAccessor(Vector2 _player)
         {
             Player = _player;
-
-            dataThread = new Thread(new ParameterizedThreadStart(CoordinateCommand.UpdateCoordinate));
         }
-        public override void UpdateData(object varRowOfRequest)
+        public override async Task UpdateData(object varRowOfRequest)
         {
             command = new CoordinateCommand(Player, SceneManager.GetActiveScene().name);
 
-            Task.Run(() => CoordinateCommand.UpdateCoordinate((string)varRowOfRequest));
+            await CoordinateCommand.UpdateCoordinate((string)varRowOfRequest);
         }
 
-        public override void ReadData()
+        public override async void ReadData()
         {
             command = new CoordinateCommand(Player, SceneManager.GetActiveScene().name);
 
-            CoordinateCommand.ReadCoordinate();
+            await CoordinateCommand.ReadCoordinate();
         }
     }
 }

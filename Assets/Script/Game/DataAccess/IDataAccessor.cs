@@ -1,6 +1,7 @@
 using DB;
 using UnityEngine;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Game
@@ -11,7 +12,7 @@ namespace Game
 
         public IDataAccessor() {}
 
-        public abstract void UpdateData(object varRowOfRequest);
+        public abstract Task UpdateData(object varRowOfRequest);
 
         public abstract void ReadData();
     }

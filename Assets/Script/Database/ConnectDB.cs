@@ -14,7 +14,6 @@ namespace DB
             if (connection.State != System.Data.ConnectionState.Open)
             {
                 connection.Open();
-
             }
         }
         internal void CloseConnection()
@@ -22,7 +21,6 @@ namespace DB
             if (connection.State != System.Data.ConnectionState.Closed)
             {
                 connection.Close();
-
             }
         }
     }

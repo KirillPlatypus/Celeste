@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game;
 using System.Threading.Tasks;
+using PlayerObject;
+using UI.Button;
 
-public class Door : MonoBehaviour
+public class Door : ISavePosition
 {
     [SerializeField] private LoadScene scene;
-    [SerializeField] private KeyCode button;
     [SerializeField] private string sceneName;
     [SerializeField] Vector2 size;
-    [SerializeField] private LayerMask mask;
-    private bool AboutDoor;
 
+    public override bool OnPoint{get; set;}
 
     void Update()
     {
-        AboutDoor = Physics2D.OverlapBox(transform.position, size, 1f, mask);
+        OnPoint = Physics2D.OverlapBox(transform.position, size, 1f, mask);
 
-        if(Input.GetKeyDown(button) && AboutDoor)
+        if(HoldButton.GetButtonStatus(ButtonCode.InteractionButton) && OnPoint)
         {
-            StartCoroutine(scene.Loading(sceneName));
+            SaveOnPoint(OnPoint, gameObject.name, ModuleDB.coordinateTable.Name, transform.position);
+            scene.Loading(sceneName);
         }
     }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireCube(transform.position, size);
     }
-
 }

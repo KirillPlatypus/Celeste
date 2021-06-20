@@ -10,11 +10,8 @@ namespace DB
     
     public abstract class Command
     {
-        private static string path = Path.GetFullPath("Coordinate.sqlite3");
 
-        protected static ConnectDB connectDB = new ConnectDB(path);
-
-        protected Command(Transform _player, string scenename)
+        protected Command(Vector2 _player, string scenename)
         {
 
         }
@@ -22,30 +19,35 @@ namespace DB
 
     public class CoordinateCommand : Command
     {
+
+        private static string path = Path.GetFullPath("Coordinate.sqlite3");
         private static Vector2 player;
+                protected static ConnectDB connectDB = new ConnectDB(path);
+
 
         private static string sceneName;
 
-        public CoordinateCommand(Transform _player, string scenename) : base(_player, scenename)
+        public CoordinateCommand(Vector2 _player, string scenename) : base(_player, scenename)
         {
-            player = _player.position;
+            player = _player;
             sceneName = scenename;
         }
 
-        public static async void UpdateCoordinate(object name)
+        public static async Task UpdateCoordinate(object name)
         {
-       
             await ReadCoordinate();
             
-            string update = $"UPDATE coordinate SET CoordinateX = '{player.x}'," +
-                        $" CoordinateY = '{player.y}'," +
-                        $" Name = '{(string)name}' WHERE Id = {ModuleDB.sceneTable.Id};";
-
+                var update = $"UPDATE coordinate SET CoordinateX = @CoordinateX," +
+                             $" CoordinateY = @CoordinateY," +
+                             $" Name = @Name WHERE Id = {ModuleDB.coordinateTable.Id};";
 
             using (var commandSQl = new SqliteCommand(update, connectDB.connection))
             {
-
                 connectDB.OpenConnection();
+
+                commandSQl.Parameters.AddWithValue("@CoordinateX", player.x);
+                commandSQl.Parameters.AddWithValue("@CoordinateY", player.y);
+                commandSQl.Parameters.AddWithValue("@Name", (string)name);
 
                 var result = await commandSQl.ExecuteNonQueryAsync();
 
@@ -72,8 +74,6 @@ namespace DB
                     {
                         if(sceneName == (string)result["SceneName"])
                         {
-                            //result.GetFloat(result.GetOrdinal("CoordinateX"));
-                            //result.GetFloat(result.GetOrdinal("CoordinateY"));
                             ModuleDB.coordinateTable.Id = (long)result["Id"];
                             ModuleDB.coordinateTable.Name = (string)result["Name"];
                             ModuleDB.coordinateTable.CoordinateX = (double)result["CoordinateX"];
@@ -98,16 +98,20 @@ namespace DB
 
     public class SceneCommand : Command
      {
+                 private static string path = Path.GetFullPath("Coordinate.sqlite3");
+
         private static Vector2 player;
+
+        protected static ConnectDB connectDB = new ConnectDB(path);
 
         private static string sceneName;
 
-        public SceneCommand(Transform _player, string scenename) : base(_player, scenename)
+        public SceneCommand(Vector2 _player, string scenename) : base(_player, scenename)
         {
             sceneName = scenename;
         }
 
-        public static async void UpdateScene(object activeScenebool)
+        public static async Task UpdateScene(object activeScenebool)
         {
             await ReadScene();
             Debug.Log(activeScenebool);

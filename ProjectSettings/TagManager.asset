@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Coin
   - Camera
+  - BackGround
+  - Button
+  - Canvas
   layers:
   - Default
   - TransparentFX
