@@ -239,14 +239,13 @@ GameObject:
   - component: {fileID: 8678072714877897396}
   - component: {fileID: 8678072714877897359}
   - component: {fileID: 8678072714877897399}
-  - component: {fileID: 8678072714877897356}
+  - component: {fileID: 3045921644032473271}
   - component: {fileID: 8678072714877897398}
   - component: {fileID: 8678072714877897353}
-  - component: {fileID: 7283751267121616973}
+  - component: {fileID: 5202293369438149100}
   - component: {fileID: 2369741595240430773}
+  - component: {fileID: 2943724640736568349}
   - component: {fileID: 8678072714877897358}
-  - component: {fileID: 8678072714877897352}
-  - component: {fileID: 2151314619607700207}
   - component: {fileID: 6055027253105648215}
   - component: {fileID: 8678072714877897393}
   - component: {fileID: 8678072714877897395}
@@ -295,16 +294,16 @@ MonoBehaviour:
   renderer: {fileID: 8678072714877897393}
   transform: {fileID: 8678072714877897397}
   collider: {fileID: 1243865457783090447}
-  playerView: {fileID: 8678072714877897396}
+  playerView: {fileID: 5202293369438149100}
   playerModel: {fileID: 8678072714877897354}
   direction: {fileID: 8055462135544443259}
-  movement: {fileID: 8678072714877897359}
-  jump: {fileID: 8678072714877897352}
-  wall: {fileID: 8678072714877897353}
-  jumpWall: {fileID: 2151314619607700207}
-  dash: {fileID: 8678072714877897399}
+  movement: {fileID: 3045921644032473271}
+  jump: {fileID: 8678072714877897398}
+  wall: {fileID: 8678072714877897399}
+  jumpWall: {fileID: 8678072714877897353}
+  dash: {fileID: 8678072714877897396}
   effects: {fileID: 8678072714877897358}
-  slide: {fileID: 7283751267121616973}
+  slide: {fileID: 8678072714877897359}
   animation: {fileID: 2369741595240430773}
   illusion: {fileID: 7331442837230563641, guid: 0e451ab5108b41341877a22221e9a256,
     type: 3}
@@ -372,10 +371,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c13993838842c4ba8766370869d661, type: 3}
+  m_Script: {fileID: 11500000, guid: da6ffa909d251c099937ff18796972a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.14
+  keyDash: 0
+  dashState: 0
+  savedVelocity: {x: 0, y: 0}
+  savedDiraction: {x: 0, y: 0}
 --- !u!114 &8678072714877897359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +387,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b136ffc00189b4d8dcf6560f0703da, type: 3}
+  m_Script: {fileID: 11500000, guid: e20849c1555c8ceb6881616c04688941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8678072714877897399
@@ -397,14 +399,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e4bbfb3692d664a975d26118bfd979, type: 3}
+  m_Script: {fileID: 11500000, guid: 99a1f9d9bdd610dd48c3bd7baff68478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyDash: 122
-  dashState: 0
-  savedVelocity: {x: 0, y: 0}
-  savedDiraction: {x: 0, y: 0}
---- !u!114 &8678072714877897356
+--- !u!114 &3045921644032473271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -413,7 +411,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459486a45682bf1c2b693eade2aca74f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9428ae820d0f8d3fe80e09a5d5c42b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8678072714877897398
@@ -425,9 +423,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f105cf3f8b0f4e992f66221c76f600, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cb5c28a73d8aa15c84a31f9c1e51f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerMin: 0.3
+  powerMax: 3.35
 --- !u!114 &8678072714877897353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,10 +437,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227e15e9393aebc4da78f0dbcfa6baa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 600149e2e4deba40fbc73e516b5329ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7283751267121616973
+  distance: 0
+--- !u!114 &5202293369438149100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -449,9 +450,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678072714877897394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5850d9767b6a434195325ba6713b840, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f6266f0c3451add387abbcb5dec4274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0.14
+  joystick: {fileID: 0}
 --- !u!114 &2369741595240430773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +467,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ed2096eff73f645b8c4186b8fc94e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2943724640736568349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678072714877897394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd537c0daea05cae6bf68eb602c201b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinemachine: {fileID: 0}
 --- !u!114 &8678072714877897358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,33 +495,6 @@ MonoBehaviour:
   particleDash: {fileID: 7328401308901965868}
   slideWall: {fileID: 7365460685057799821}
   time: 0.04
---- !u!114 &8678072714877897352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e135df6f234ce06995550dfb5bdc39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerMin: 0.3
-  powerMax: 3.35
---- !u!114 &2151314619607700207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678072714877897394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9165f06fca99379ddb0f293ad39cc0d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0
 --- !u!114 &6055027253105648215
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,3 +12,5 @@ Temp/
 *.vscode/
 UserSettings/
 Library/
+Library/**
+UserSettings/**

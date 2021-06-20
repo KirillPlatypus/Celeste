@@ -420,14 +420,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 888052499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ebac5428b9538e2ab5db23a1fab3e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9690cf1f229695c8eabe0f0ca7fa1ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DontDestroyPlayer: {fileID: 8678072714877897394, guid: cbd90c34defddb547b5d5bb84b42043f,
-    type: 3}
-  DontDestroyCamera: {fileID: 6173477367235023323, guid: 574979190ead1267eb9c075e3ef5e54b,
-    type: 3}
-  activeCoin: {fileID: 11400000, guid: ecf3f1cd2c12f4696964db1b98ec1848, type: 2}
+  DontDestroyObjects: []
+  activeCoin: {fileID: 0}
 --- !u!1 &1390802726
 GameObject:
   m_ObjectHideFlags: 0
