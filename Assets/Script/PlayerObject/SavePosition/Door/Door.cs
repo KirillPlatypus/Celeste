@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using PlayerObject;
 using UI.Button;
 
-public class Door : ISavePosition
+public class Door : ICheckPoint, IPoint
 {
     [SerializeField] private LoadScene scene;
     [SerializeField] private string sceneName;
     [SerializeField] Vector2 size;
 
-    public override bool OnPoint{get; set;}
+    public bool OnPoint{get; set;}
 
     void Update()
     {

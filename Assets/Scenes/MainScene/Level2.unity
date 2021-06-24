@@ -52718,7 +52718,7 @@ PrefabInstance:
     - target: {fileID: 7601266003391953927, guid: 45b6af6d97cf36db5937df5286335d15,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.53
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 7601266003391953927, guid: 45b6af6d97cf36db5937df5286335d15,
         type: 3}
@@ -53800,7 +53800,27 @@ PrefabInstance:
     - target: {fileID: 6719604524479924799, guid: 88b5e6666d76d663dbac9c46b8e09f0f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.16
+      value: 5.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485046253652069590, guid: 88b5e6666d76d663dbac9c46b8e09f0f,
+        type: 3}
+      propertyPath: scene
+      value: 
+      objectReference: {fileID: 1685819895}
+    - target: {fileID: 7485046253652069590, guid: 88b5e6666d76d663dbac9c46b8e09f0f,
+        type: 3}
+      propertyPath: size.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485046253652069590, guid: 88b5e6666d76d663dbac9c46b8e09f0f,
+        type: 3}
+      propertyPath: size.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485046253652069590, guid: 88b5e6666d76d663dbac9c46b8e09f0f,
+        type: 3}
+      propertyPath: sceneName
+      value: SampleScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88b5e6666d76d663dbac9c46b8e09f0f, type: 3}
@@ -54102,7 +54122,7 @@ PrefabInstance:
         type: 3}
       propertyPath: scene
       value: 
-      objectReference: {fileID: 1685819896}
+      objectReference: {fileID: 1685819895}
     - target: {fileID: 6779076767480290757, guid: 81ffef3d5d78b11a289eba403bb47598,
         type: 3}
       propertyPath: button

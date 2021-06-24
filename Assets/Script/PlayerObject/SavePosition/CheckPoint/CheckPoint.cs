@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using PlayerObject;
 
-public class CheckPoint : ISavePosition
+public class CheckPoint : ICheckPoint, IPoint
 {
-    public override bool OnPoint{get; set;}
+    public bool OnPoint{get; set;}
 
     public void Update()
     {

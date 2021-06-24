@@ -73,7 +73,7 @@ namespace Game
             if(array.Length != 0)
             {
                 if(array.Length > 1)
-                    DestroyImmediate(destroyOrNot);
+                    Destroy(array[1]);
 
                 DontDestroyOnLoad(destroyOrNot);
             }

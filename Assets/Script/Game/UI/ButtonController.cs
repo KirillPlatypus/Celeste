@@ -20,13 +20,12 @@ namespace Game.UI
             if(door != null)
                 DisableButton("Interaction", !door.OnPoint);
             else
-                DisableButton("Interaction", true);
-
-            DisableButton("UpMove",!OnceButton.pointerDown);
-            DisableButton("DownMove",!OnceButton.pointerDown);
+                DisableButton("", true);
         }
         private void DisableButton(string name, bool disable)
         {
+            if(name == "")
+                return;
             for (int i = 0; i < button.Length; i++)
             {
                 if(button[i].name == name)
