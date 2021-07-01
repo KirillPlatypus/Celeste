@@ -41,7 +41,9 @@
      <Compile Include="Assets\Script\PlayerObject\Traps\Spike\Spike.cs" />
      <Compile Include="Assets\Script\UI\Button\Jump\JumpButton.cs" />
      <Compile Include="Assets\Script\Player\Controller\EffectsPlayerController.cs" />
+     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
      <Compile Include="Assets\Script\Database\Table\CoordinateTable.cs" />
+     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
      <Compile Include="Assets\Script\Player\Controller\WallController.cs" />
      <Compile Include="Assets\Script\Game\DataAccess\SceneDataAccessor.cs" />
      <Compile Include="Assets\Script\Player\Controller\Move\MovementController.cs" />
@@ -59,12 +61,15 @@
      <Compile Include="Assets\Script\Player\View\PlayerView.cs" />
      <Compile Include="Assets\Script\Player\PlayerElement.cs" />
      <Compile Include="Assets\Script\PlayerObject\BackGround\Parallax.cs" />
+     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
      <Compile Include="Assets\Script\Player\Controller\Jump\JumpWallController.cs" />
      <Compile Include="Assets\Script\PlayerObject\Coin\Coin.cs" />
      <Compile Include="Assets\Script\PlayerObject\SavePosition\ISavePosition.cs" />
      <Compile Include="Assets\Script\PlayerObject\SavePosition\CheckPoint\CheckPoint.cs" />
+     <Compile Include="Assets\Start.cs" />
      <Compile Include="Assets\Script\Player\Controller\ResolutionDirectionController.cs" />
      <Compile Include="Assets\Script\UI\Button\IButton.cs" />
+     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
      <Compile Include="Assets\Script\Camera\ShakeCamera.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
      <Compile Include="Assets\Script\Game\DataAccess\IDataAccessor.cs" />
@@ -73,11 +78,16 @@
      <Compile Include="Assets\Script\PlayerObject\SavePosition\Door\Door.cs" />
      <Compile Include="Assets\Script\UI\Button\Interaction\InteractionButton.cs" />
      <Compile Include="Assets\Script\Player\Controller\DeathController.cs" />
+     <Compile Include="Assets\Script\PlayerObject\SavePosition\SwitchScene\ScenePoint.cs" />
      <Compile Include="Assets\Script\PlayerObject\Traps\ITrap.cs" />
+     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
      <Compile Include="Assets\Script\Game\LoadScene.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Spring\ISpring.cs" />
      <Compile Include="Assets\Script\Player\Controller\AnimationController.cs" />
      <Compile Include="Assets\Script\PlayerObject\IllusionBlocks\IllusionBlock.cs" />
+     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
      <Compile Include="Assets\Script\Player\Controller\IllusionPlayer.cs" />
+     <Compile Include="Assets\Script\PlayerObject\Spring\Spring.cs" />
      <Compile Include="Assets\Script\Player\PlayerAplication.cs" />
      <Compile Include="Assets\Script\UI\Button\OnceButton.cs" />
      <Compile Include="Assets\Script\Player\Model\PlayerModel.cs" />
@@ -87,12 +97,10 @@
      <Compile Include="Assets\Script\Player\Controller\SlideController.cs" />
      <Compile Include="Assets\Script\Player\Controller\Move\Movement.cs" />
      <Compile Include="Assets\Script\PlayerObject\Coin\CoinCounter.cs" />
+     <Compile Include="Assets\Script\PlayerObject\CheckScene.cs" />
      <Compile Include="Assets\Script\PlayerObject\IllusionBlocks\GroupIllusionBlock.cs" />
      <Compile Include="Assets\Script\Database\Command\CoordinateDB.cs" />
      <Compile Include="Assets\Script\UI\Button\Dash\DashButton.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Spring\Spring.cs" />
-     <Compile Include="Assets\Script\PlayerObject\Spring\ISpring.cs" />
-     <Compile Include="Assets\Script\PlayerObject\SavePosition\SwitchScene\ScenePoint.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/kenadi/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

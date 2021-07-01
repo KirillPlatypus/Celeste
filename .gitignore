@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+Library/**
+Logs/**
+obj/**
+=======
 /[Ll]ibrary/
 /[Ll]ogs/
 /[Tt]emp/
@@ -69,3 +74,4 @@ crashlytics-build.properties
 
 !*.dll
 !*.obj
+>>>>>>> UI
